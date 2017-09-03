@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset = 'utf-8'>
+    <meta name = "viewport" content="width-device-width, initial-scale-1">
+<!-- Latest compiled and minified CSS -->
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" type="text/css">
+<script src="{% static 'bootstrap/js/jquery.min.js' %}"></script>
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}" type="text/css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+
+
+<nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <!--Logo-->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="4" class="navbar-brand">Mohammad</a>
+            </div>
+            <!--Menue Item-->
+            <div class="collapse navbar-collapse" id="mainNavBar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="4">Home</a></li>
+                    <li><a href="4">About</a></li>
+                    <li><a href="4">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+<div class="container">
+    <h2>Borders</h2>
+    <div class="well">Basic well</div>
+    <div class="well well-sm">Basic well</div>
+
+    <div class="alert alert-success">Congratulations</div>
+    <div class="alert alert-info">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Don't forget me
+    </div>
+    <div class="alert alert-danger fade in" >
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Don't forget me
+    </div>
+</div>
+
+
+</body>
+</html>

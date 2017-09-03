@@ -1,0 +1,104 @@
+{% extends 'base-10-sidebar.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block form %}
+<!--<div class="container">-->
+
+<script>
+$("document").ready(function() {
+
+  $('.dropdown-menu').on('click', function(e) {
+      if($(this).hasClass('dropdown-menu-form')) {
+          e.stopPropagation();
+      }
+  });
+});
+</script>
+<script>
+	  $('label').click(function () {
+        var checked = $('input', this).is(':checked');
+        $('span', this).text(checked ? 'Off' : 'On');
+    });
+</script>
+
+<form class="form-inline" action="/chart/all/" method="post">
+	{% csrf_token %}
+	<div class="container-fluid">
+	  <div class="row">
+	       <div class="col-sm-3">
+			     <div class="btn-group">
+				       <button type="button" class="btn btn-primary">Cities</button>
+					  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    <span class="caret"></span>
+					    <span class="sr-only">Toggle Dropdown</span>
+					  </button>
+					<ul class="dropdown-menu">
+					  <li><a href="#" class="large" data-value="Tehran" tabIndex="-1"><input type="checkbox" name="MGW" value="mgw_teh_isc2"/>&nbsp;Tehran </a></li>
+					  <li><a href="#" class="large" data-value="Alborz" tabIndex="-1"><input type="checkbox" name="MGW" value="mgw_abz_krj"/>&nbsp;Alborz </a></li>
+					  <li><a href="#" class="large" data-value="Shiraz" tabIndex="-1"><input type="checkbox" name="MGW" value="mgw_frs_vali"/>&nbsp;Shiraz </a></li>
+					  <li><a href="#" class="large" data-value="Mashahad" tabIndex="-1"><input type="checkbox" name="MGW" value="mgw_msh_ad"/>&nbsp;Mashahad</a></li>
+					  <li><a href="#" class="large" data-value="Mazandaran" tabIndex="-1"><input type="checkbox" name="MGW" value="mgw_mzn_emam"/>&nbsp;Mazandarn</a></li>
+					  <li><a href="#" class="large" data-value="Boshehr" tabIndex="-1"><input type="checkbox" name="MGW" value="mgw_bou_bhmn"/>&nbsp;Boshehr</a></li>
+					</ul>
+			     </div>
+			     <div class="btn-group">
+				       <button type="button" class="btn btn-primary">Source Operator</button>
+					  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    <span class="caret"></span>
+					    <span class="sr-only">Toggle Dropdown</span>
+					  </button>
+					<ul class="dropdown-menu">
+					  <li><a href="#" class="large" data-value="Shatel" tabIndex="-1"><input type="checkbox" name="source_operator" value="shatel"/>&nbsp;Shatel </a></li>
+					  <li><a href="#" class="large" data-value="MCI" tabIndex="-1"><input type="checkbox" name="source_operator" value="mci"/>&nbsp;MCI </a></li>
+					  <li><a href="#" class="large" data-value="MTN" tabIndex="-1"><input type="checkbox" name="source_operator" value="mtn"/>&nbsp;MTN </a></li>
+					  <li><a href="#" class="large" data-value="Rightel" tabIndex="-1"><input type="checkbox" name="source_operator" value="rightel"/>&nbsp;Rightel</a></li>
+					  <li><a href="#" class="large" data-value="TCI" tabIndex="-1"><input type="checkbox" name="source_operator" value="tci"/>&nbsp;TCI</a></li>
+					  <li><a href="#" class="large" data-value="TIC" tabIndex="-1"><input type="checkbox" name="source_operator" value="tic"/>&nbsp;TIC</a></li>
+					</ul>
+			     </div>
+			     <div class="btn-group">
+				       <button type="button" class="btn btn-primary">Destination Operator</button>
+					  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    <span class="caret"></span>
+					    <span class="sr-only">Toggle Dropdown</span>
+					  </button>
+					<ul class="dropdown-menu">
+					  <li><a href="#" class="large" data-value="Shatel" tabIndex="-1"><label><input type="checkbox" name="destination_operator" value="shatel" id="shatel"/>&nbsp;Shatel</label> </a></li>
+
+					  <li><a href="#" class="large" data-value="MCI" tabIndex="-1"><input type="checkbox" name="destination_operator" value="mci"/>&nbsp;MCI </a></li>
+					  <li><a href="#" class="large" data-value="MTN" tabIndex="-1"><input type="checkbox" name="destination_operator" value="mtn"/>&nbsp;MTN </a></li>
+					  <li><a href="#" class="large" data-value="Ritel" tabIndex="-1"><input type="checkbox" name="destination_operator" value="rightel"/>&nbsp;Rightel</a></li>
+					  <li><a href="#" class="large" data-value="TCI" tabIndex="-1"><input type="checkbox" name="destination_operator" value="tci"/>&nbsp;TCI</a></li>
+					  <li><a href="#" class="large" data-value="TIC" tabIndex="-1"><input type="checkbox" name="destination_operator" value="tic"/>&nbsp;TIC</a></li>
+					</ul>
+			     </div>
+			</div>
+
+			<div class="col-sm-6">
+			    <div class="form-group">
+			        <label for="Start Date">Start Date</label>
+			        <input type="date" class="form-control" name = 'start_date' id="Start Date" placeholder="Start Date">
+			    </div>
+			    <div class="form-group">
+			        <label for="End Date">End Date</label>
+			        <input type="date" class="form-control" name='end_date' id="End Date" placeholder="End Date">
+			    </div>
+
+				  <button type="submit" class="btn btn-success">APPLY</button>
+			</div>
+	  </div>
+	</div>
+</form>
+
+	{% block chart%}
+	{% endblock %}
+
+
+
+
+<!--</div>-->
+{% endblock %}

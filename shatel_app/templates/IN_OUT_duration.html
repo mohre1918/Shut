@@ -1,0 +1,33 @@
+<form class="form-inline" action="/chart/all/" method="post">
+	{% csrf_token %}
+	<div class="container-fluid">
+	  <div class="row">
+	       <div class="col-sm-3">
+			     <div class="btn-group">
+				       <button type="button" class="btn btn-primary">Cities</button>
+					  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    <span class="caret"></span>
+					    <span class="sr-only">Toggle Dropdown</span>
+					  </button>
+					<ul class="dropdown-menu">
+					  <li><a href="#" class="large" data-value="Tehran" tabIndex="-1"><input type="checkbox" name="MGW" value="mgw_teh_isc2"/>&nbsp;Tehran </a></li>
+					  <li><a href="#" class="large" data-value="Alborz" tabIndex="-1"><input type="checkbox" name="MGW" value="mgw_abz_krj"/>&nbsp;Alborz </a></li>
+					  <li><a href="#" class="large" data-value="Shiraz" tabIndex="-1"><input type="checkbox" name="MGW" value="mgw_frs_vali"/>&nbsp;Shiraz </a></li>
+					  <li><a href="#" class="large" data-value="Mashahad" tabIndex="-1"><input type="checkbox" name="MGW" value="mgw_msh_ad"/>&nbsp;Mashahad</a></li>
+					  <li><a href="#" class="large" data-value="Mazandaran" tabIndex="-1"><input type="checkbox" name="MGW" value="mgw_mzn_emam"/>&nbsp;Mazandarn</a></li>
+					  <li><a href="#" class="large" data-value="Boshehr" tabIndex="-1"><input type="checkbox" name="MGW" value="mgw_bou_bhmn"/>&nbsp;Boshehr</a></li>
+					</ul>
+			     </div>
+	       </div>
+	  </div>
+	</div>
+</form>
+
+<div class="col-lg-12">
+	<div class="chart-container">
+			<div id="crinfo" style="width: 100%; height: 400px; background-color: #FFFFFF;" ></div>
+	</div>
+</div>
+
+{% block content %}
+	{% endblock %}

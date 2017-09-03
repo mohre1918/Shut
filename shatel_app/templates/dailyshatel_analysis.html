@@ -1,0 +1,188 @@
+{% extends 'Dailyshatel_analysis_form.html' %}
+{% block head %}
+		<title>chart created with amCharts | amCharts</title>
+		<meta name="description" content="chart created using amCharts live editor" />
+
+				<!-- amCharts javascript sources -->
+		{% load static %}
+
+		<link rel="stylesheet" href="{% static 'bootstrap/css/sidebar.css' %}" type="text/css">
+		<link rel="stylesheet" href="{% static 'bootstrap/css/radio.css' %}" type="text/css">
+		<link rel="stylesheet" href="{% static 'bootstrap/css/class_active.css' %}" type="text/css">
+
+		<!-- Latest compiled and minified JavaScript -->
+
+		<script type="text/javascript" src="{% static 'amcharts/amcharts/amcharts.js' %}"></script>
+		<script type="text/javascript" src="{% static 'amcharts/amcharts/serial.js' %}"></script>
+		<script type="text/javascript" src="{% static 'amcharts/amcharts/pie.js' %}"></script>
+		<script type="text/javascript" src="{% static 'amcharts/amcharts/themes/black.js' %}"></script>
+		<script type="text/javascript" src="{% static 'amcharts/amcharts/plugins/dataloader/dataloader.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'amcharts/amcharts/plugins/plugins/export/export.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'amcharts/amcharts/themes/light.js' %}"></script>
+		<link rel="stylesheet" href="{% static 'amcharts/amcharts/plugins/export/export.css' %}" type="text/css" media="all" />
+
+		<!--Incoming/Outgoing Duration from Shatel-->
+		<script type="text/javascript">
+			AmCharts.makeChart("PerOperatorDuration",
+				{
+					"type": "serial",
+					"categoryField": "Operator",
+					"colors" : ["#7cfc00","#000099"],
+					"startDuration": 1,
+					"categoryAxis": {
+						"gridPosition": "start"
+					},
+					"chartScrollbar": {
+                         "graph": "g1",
+                         "position" : "bottom",
+                         },
+                    "trendLines": [],
+					"graphs": [
+						{
+							"balloonText": "[[title]] of [[Operator]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-1",
+							"title": "Incomming call",
+							"type": "column",
+							"valueAxis": "ValueAxis-1",
+							"valueField": "Incomming call"
+						},
+						{
+							"balloonText": "[[title]] of [[Operator]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-2",
+							"title": "Outgoing call",
+							"type": "column",
+							"valueAxis": "ValueAxis-1",
+							"valueField": "Outgoing call"
+						}
+					],
+					"guides": [],
+					"valueAxes": [
+						{
+							"id": "ValueAxis-1",
+							"title": "Duration(Second)"
+						}
+					],
+					"allLabels": [],
+					"balloon": {},
+					"legend": {
+						"enabled": true,
+						"useGraphSettings": true
+					},
+					"titles": [
+						{
+							"id": "Title-1",
+							"size": 15,
+							"text": "Incoming/Outgoing Duration from Shatel"
+						}
+					],
+					"dataProvider":
+						{{ duration | safe }}
+
+				}
+			);
+
+		</script>
+		<script type="text/javascript">
+			AmCharts.makeChart("PerOperatorDuration-pie-incomming",
+				{
+			  "type": "pie",
+			  "theme": "light",
+			  "dataProvider": {{ duration | safe }},
+			  "valueField": "Incomming call",
+			  "titleField": "Operator",
+			   "balloon":{
+			   "fixedPosition":true
+			  },
+			  "export": {
+			    "enabled": true
+			  },
+			  "titles": [
+						{
+							"id": "Title-1",
+							"size": 15,
+							"text": "Incomming Percentage"
+						}
+					]
+			} );
+
+		</script>
+		<script type="text/javascript">
+			AmCharts.makeChart("PerOperatorDuration-pie-outgoing",
+				{
+			  "type": "pie",
+			  "theme": "light",
+			  "dataProvider": {{ duration | safe }},
+			  "valueField": "Outgoing call",
+			  "titleField": "Operator",
+			   "balloon":{
+			   "fixedPosition":true
+			  },
+			  "export": {
+			    "enabled": true
+			  },
+			  "titles": [
+						{
+							"id": "Title-1",
+							"size": 15,
+							"text": "Outgoing Percentage"
+						}
+					]
+
+			} );
+
+		</script>
+
+{% endblock %}
+
+{% block chart %}
+	<hr class="divider">
+	<hr class="divider">
+	<div class="container">
+	<table class="table table-bordered">
+		  <thead class="head-inverse">
+		    <tr style="background-color:#0000ff; color: #ffffff; box-shadow:3px 3px 3px #999">
+				<th class="text-center" style="font-size:18px">Selected MGWs</th>
+			    <th class="text-center"style="font-size:18px">Date</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr style="box-shadow:3px 3px 3px #999;">
+			  <td class="text-center" style="font-size:18px">{% for mgw in user_selected_mgw %}
+			        {{mgw}}<br>
+			      {% endfor %}
+		      </td>
+			  <td class="text-center"style="font-size:18px">{% for date in date %}
+			        {{date}}
+			      {% endfor %}
+		      </td>
+		    </tr>
+		  </tbody>
+	</table>
+</div>
+	<hr class="divider">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-1">
+            </div>
+            <div class="col-sm-10" style="border-style:double;background-color:#ffffff;box-shadow:3px 3px 3px #999;">
+				<div class="chart-container">
+						<div id="PerOperatorDuration" style="width: 100%; height: 600px; background-color: #FFFFFF;" ></div> <!--Incoming/Outgoing Duration from Shatel-->
+				</div>
+            </div>
+		</div>
+		<div class="row">
+			<div class="col-sm-1">
+			</div>
+			<div class="col-sm-5" style="border-style:double;background-color:#ffffff;box-shadow:3px 3px 3px #999;">
+				<div id="PerOperatorDuration-pie-outgoing" style="width: 100%; height:600px; background-color: #FFFFFF;margin-top:30px;"></div> <!--Incoming/Outgoing Duration from Shatel-->
+            </div>
+            <div class="col-sm-5" style="border-style:double;background-color:#ffffff;box-shadow:3px 3px 3px #999;">
+				<div class="chart-container">
+						<div id="PerOperatorDuration-pie-incomming" style="width: 100%; height: 600px; background-color: #FFFFFF;margin-top:30px;" ></div> <!--Incoming/Outgoing Duration from Shatel-->
+				</div>
+            </div>
+		</div>
+	</div>
+{% endblock %}

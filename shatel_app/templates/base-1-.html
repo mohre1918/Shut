@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset = 'utf-8'>
+    <meta name = "viewport" content="width-device-width, initial-scale-1">
+<!-- Latest compiled and minified CSS -->
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" type="text/css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}" type="text/css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+
+
+<div class="container-fluid">
+    <!--<h1>3 column layout</h1>-->
+    <!--<div class="row">-->
+        <!--<div class="col-md-4" style="background-color: #FF9999">Left</div>-->
+        <!--<div class="col-md-4" style="background-color: #FF9999">Middle</div>-->
+        <!--<div class="col-md-4" style="background-color: #FF9999">Right</div>-->
+
+    <!--</div>-->
+
+    <p>You can highlight <mark>TEXT </mark>tag</p>
+    <blockquote>
+        <p>I'm Working in shatel</p>
+        <footer>MY JOB</footer>
+    </blockquote>
+
+    <h4>When you coming</h4>
+
+    <d1>
+        <dt>Turn on PC</dt>
+            <dd>- Open Vmware</dd>
+            <dd>- Open ubuntu</dd>
+        <dt>Make Tea</dt>
+            <dd>- boil water</dd>
+    </d1>
+
+    <p>to calculate use <code>calculate(number);</code>.</p>
+    <p>Sample Code</p>
+    <pre>
+for n in range(101):
+    if(n%4 is 0):
+        print n
+    </pre>
+
+    <p>Keyboard input <kbd>Ctrl+ALt+Delete</kbd></p>
+
+    <h4>Build in color classes</h4>
+    <p class="text-muted">Text muted</p>
+    <p class="text-success">Text muted</p>
+    <p class="text-danger">Text muted</p>
+    <p class="bg-success">Text muted</p>
+
+
+</div>
+
+
+
+</body>
+</html>

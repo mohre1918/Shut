@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block Dashboard %}
+<!--<div class="container">-->
+
+
+
+
+
+<script>
+$("document").ready(function() {
+
+  $('.dropdown-menu').on('click', function(e) {
+      if($(this).hasClass('dropdown-menu-form')) {
+          e.stopPropagation();
+      }
+  });
+});
+</script>
+
+
+
+<form class="form-inline" action="/OperatorAnalysis/" method="post">
+	{% csrf_token %}
+
+
+	<div class="container-fluid">
+	  <div class="row">
+	       <div class="col-sm-4">
+
+				<div class="btn-group " >
+				      <button type="button" class="btn btn-primary"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Provinces</button>
+					  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    <span class="caret"></span>
+					    <span class="sr-only">Toggle Dropdown</span>
+					  </button>
+					<ul class="dropdown-menu dropdown-menu-form" role="menu" style="background-color:#74a7c6; color:#000000">
+						{% for mgw in mgws %}
+							{% if mgw in user_selected_mgw %}
+								<li><label style="padding-left:5px;width:180px"><input type="checkbox" name="MGW" value="{{mgw}}" checked/>{{mgw}}</label></li>
+							{% else %}
+					            <li><label style="padding-left:5px;width:180px"><input type="checkbox" name="MGW" value="{{mgw}}"/>&nbsp;{{mgw}}</label></li>
+							{% endif %}
+						{% endfor %}
+				    </ul>
+			     </div>
+			     <div class="btn-group">
+				       <button type="button" class="btn btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Source Operator</button>
+					  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    <span class="caret"></span>
+					    <span class="sr-only">Toggle Dropdown</span>
+					  </button>
+					<ul class="dropdown-menu dropdown-menu-form" role="menu" style="background-color:#74a7c6; color:#000000">
+						{% for operator in operators %}
+							{% if operator in source_operator %}
+					             <li><label class="checkbox" style="padding-left:5px;"><input type="checkbox" name="source_operator" value="{{operator}}" checked/>&nbsp;{{operator}}</label></li>
+							{% else %}
+					            <li><label class="checkbox" style="padding-left:5px;"><input type="checkbox" name="source_operator" value="{{operator}}"/>&nbsp;{{operator}}</label></li>
+							{% endif %}
+						{% endfor %}
+				    </ul>
+			     </div>
+			     <div class="btn-group">
+				       <button type="button" class="btn btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Destination Operator</button>
+					  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    <span class="caret"></span>
+					    <span class="sr-only">Toggle Dropdown</span>
+					  </button>
+					<ul class="dropdown-menu dropdown-menu-form" role="menu" style="background-color:#74a7c6; color:#000000">
+						{% for operator in operators %}
+							{% if operator in destination_operator %}
+								<li><label class="checkbox" style="padding-left:5px;"><input type="checkbox" name="destination_operator" value="{{operator}}" checked/>&nbsp;{{operator}}</label></li>
+							{% else %}
+					            <li><label class="checkbox" style="padding-left:5px;"><input type="checkbox" name="destination_operator" value="{{operator}}"/>&nbsp;{{operator}}</label></li>
+							{% endif %}
+						{% endfor %}
+					    <!--<li><label class="checkbox" style="padding-left:10px;"><input type="checkbox" name="source_operator" value="shatel"/>&nbsp;Undefined</label></li>-->
+				    </ul>
+			     </div>
+			</div>
+
+			<div class="col-sm-6">
+			    <div class="form-group">
+			        <label for="Start Date">Start Date</label>
+			        <input type="date" class="form-control" name = 'start_date' id="Start Date" placeholder="Start Date" value = "{% for date in start_date %}{{date}}{% endfor %}">
+			    </div>
+			    <div class="form-group">
+			        <label for="End Date">End Date</label>
+			        <input type="date" class="form-control" name='end_date' id="End Date" placeholder="End Date" value="{% for date in end_date %}{{date}}{% endfor %}">
+			    </div>
+
+				  <button type="submit" class="btn btn-success">APPLY</button>
+			</div>
+	  </div>
+	</div>
+</form>
+
+	{% block chart %}
+	{% endblock %}
+
+
+
+
+<!--</div>-->
+{% endblock %}

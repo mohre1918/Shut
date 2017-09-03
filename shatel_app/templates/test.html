@@ -1,0 +1,8 @@
+$(document).on('change', '.popover-content input[type=checkbox]', function() {
+    var idx = $(this).closest('ul').find('input[type=checkbox]').index(this);
+    var mainCbs = $('#popover_select_values input[type=checkbox]');
+    if($(this).is(':checked'))
+       mainCbs.eq(idx).attr('checked', 'checked');
+    else
+        mainCbs.eq(idx).removeAttr('checked');
+});

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<style>
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+}
+</style>
+{% endblock %}
+
+
+{% block form %}
+	<div class="container">
+<form class="form-inline" action="/Myquery/" method="post">
+	{% csrf_token %}
+
+	  <div class="row">
+		  <textarea name="myquery" id="myquery" cols="30" rows="10"></textarea>
+		  <button type="submit" class="btn btn-success"> APPLY</button>
+	  </div>
+
+</form>
+	</div>
+	{% block chart %}
+	{% endblock %}
+
+
+
+
+<!--</div>-->
+{% endblock %}

@@ -1,0 +1,492 @@
+{% extends 'Prefix_analysis_form.html' %}
+{% block head %}
+		<title>chart created with amCharts | amCharts</title>
+		<meta name="description" content="chart created using amCharts live editor" />
+
+				<!-- amCharts javascript sources -->
+		{% load static %}
+
+		<link rel="stylesheet" href="{% static 'bootstrap/css/sidebar.css' %}" type="text/css">
+		<link rel="stylesheet" href="{% static 'bootstrap/css/radio.css' %}" type="text/css">
+		<link rel="stylesheet" href="{% static 'bootstrap/css/class_active.css' %}" type="text/css">
+
+
+		<!-- Latest compiled and minified JavaScript -->
+
+		<script type="text/javascript" src="{% static 'amcharts/amcharts/amcharts.js' %}"></script>
+		<script type="text/javascript" src="{% static 'amcharts/amcharts/serial.js' %}"></script>
+		<script type="text/javascript" src="{% static 'amcharts/amcharts/pie.js' %}"></script>
+		<script type="text/javascript" src="{% static 'amcharts/amcharts/themes/black.js' %}"></script>
+		<script type="text/javascript" src="{% static 'amcharts/amcharts/plugins/dataloader/dataloader.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'amcharts/amcharts/plugins/plugins/export/export.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'amcharts/amcharts/themes/light.js' %}"></script>
+		<link rel="stylesheet" href="{% static 'amcharts/amcharts/plugins/export/export.css' %}" type="text/css" media="all" />
+
+		<!--Incoming/Outgoing Duration from Shatel-->
+		<script type="text/javascript">
+			AmCharts.makeChart("chartdiv4",
+				{
+					"type": "serial",
+					"categoryField": "Operator",
+					"startDuration": 1,
+					"categoryAxis": {
+						"gridPosition": "start"
+					},
+					"chartScrollbar": {
+                         "graph": "g1",
+                         "position" : "bottom",
+                         },
+                    "trendLines": [],
+					"graphs": [
+						{
+							"balloonText": "[[title]] of [[Operator]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-1",
+							"title": "Incomminging call",
+							"type": "column",
+							"valueAxis": "ValueAxis-1",
+							"valueField": "Incomminging call"
+						},
+						{
+							"balloonText": "[[title]] of [[Operator]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-2",
+							"title": "Outgoing call",
+							"type": "column",
+							"valueAxis": "ValueAxis-1",
+							"valueField": "Outgoing call"
+						}
+					],
+					"guides": [],
+					"valueAxes": [
+						{
+							"id": "ValueAxis-1",
+							"title": "Duration(Second)"
+						}
+					],
+					"allLabels": [],
+					"balloon": {},
+					"legend": {
+						"enabled": true,
+						"useGraphSettings": true
+					},
+					"titles": [
+						{
+							"id": "Title-1",
+							"size": 15,
+							"text": "Incoming/Outgoing Duration from Shatel"
+						}
+					],
+					"dataProvider":
+						{{ IN_OUT_DUR | safe }}
+
+				}
+			);
+
+		</script>
+
+		<script type="text/javascript">
+			AmCharts.makeChart("Duration",
+				{
+					"type": "serial",
+					"categoryField": "MGW",
+					"colors" : ["#000099","#B0DE09", "#2A0CD0", "#CD0D74", "#CC0000", "#00CC00", "#0000CC", "#DDDDDD", "#999999", "#333333", "#990000"],
+					"startDuration": 1,
+					"categoryAxis": {
+						"gridPosition": "start"
+					},
+					"chartScrollbar": {
+                         "graph": "g1",
+                         "position" : "bottom",
+                         },
+                    "trendLines": [],
+					"graphs": [
+						{
+							"balloonText": "[[title]] of [[Operator]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-1",
+							"title": "Duration",
+							"type": "column",
+							"valueField": "Duration"
+						}
+					],
+					"guides": [],
+					"valueAxes": [
+						{
+							"id": "ValueAxis-1",
+							"title": "Duration(Second)"
+						}
+					],
+					"allLabels": [],
+					"balloon": {},
+					"legend": {
+						"enabled": true,
+						"useGraphSettings": true
+					},
+					"titles": [
+						{
+							"id": "Title-1",
+							"size": 15,
+							"text": "Duration from source prefix to destination prefix"
+						}
+					],
+					"dataProvider":
+						{{ duration | safe }}
+
+				}
+			);
+		</script>
+		<script type="text/javascript">
+			AmCharts.makeChart("NER",
+				{
+					"type": "serial",
+					"categoryField": "MGW",
+					"colors" : ["#004d00", "#0D8ECF","#2A0CD0", "#CD0D74", "#CC0000", "#00CC00", "#0000CC", "#DDDDDD", "#999999", "#333333", "#990000"],
+					"startDuration": 1,
+					"categoryAxis": {
+						"gridPosition": "start"
+					},
+					"chartScrollbar": {
+                         "graph": "g1",
+                         "position" : "bottom",
+                         },
+                    "trendLines": [],
+					"graphs": [
+						{
+							"balloonText": "[[title]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-1",
+							"title": "NER",
+							"type": "column",
+							"valueField": "NER"
+						}
+					],
+					"guides": [],
+					"valueAxes": [
+						{
+							"id": "ValueAxis-1",
+							"title": "NER(%)"
+						}
+					],
+					"allLabels": [],
+					"balloon": {},
+					"legend": {
+						"enabled": true,
+						"useGraphSettings": true
+					},
+					"titles": [
+						{
+							"id": "Title-1",
+							"size": 15,
+							"text": "NER"
+						}
+					],
+					"dataProvider":
+						{{ NER | safe }}
+
+				}
+			);
+		</script>
+		<script type="text/javascript">
+			var chartData = {{ crinfo | safe }}
+			chart = new AmCharts.makeChart("crinfo",
+				{
+					"type": "serial",
+					"categoryField": "MGW",
+					"startDuration": 1,
+					"categoryAxis": {
+						"gridPosition": "start"
+					},
+					"chartScrollbar": {
+                         "graph": "g1",
+                         "position" : "bottom",
+                         },
+                    "trendLines": [],
+					"graphs": [
+						{
+							"balloonText": "[[title]] of [[MGW]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-1",
+							"title": "redirected call",
+							"type": "column",
+							"valueField": "redirected call"
+						},
+						{
+							"balloonText": "[[title]] of [[MGW]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-2",
+							"title": "user called, but no-answer",
+							"type": "column",
+							"valueField": "user called, but no-answer"
+						},
+						{
+							"balloonText": "[[title]] of [[MGW]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-3",
+							"title": "user busy",
+							"type": "column",
+							"valueField": "user busy"
+						},
+						{
+							"balloonText": "[[title]] of [[MGW]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-4",
+							"title": "unspecified",
+							"type": "column",
+							"valueField": "unspecified"
+						},
+						{
+							"balloonText": "[[title]] of [[MGW]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-5",
+							"title": "out of order",
+							"type": "column",
+							"valueField": "out of order"
+						},
+						{
+							"balloonText": "[[title]] of [[MGW]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-6",
+							"title": "user answer",
+							"type": "column",
+							"valueField": "user answer"
+						},
+						{
+							"balloonText": "[[title]] of [[MGW]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-7",
+							"title": "incomplete number",
+							"type": "column",
+							"valueField": "incomplete number"
+						},
+						{
+							"balloonText": "[[title]] of [[MGW]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-8",
+							"title": "access denied",
+							"type": "column",
+							"valueField": "access denied"
+						},
+						{
+							"balloonText": "[[title]] of [[MGW]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-9",
+							"title": "unavailable trunk line",
+							"type": "column",
+							"valueField": "unavailable trunk line"
+						}
+
+					],
+					"guides": [],
+					"valueAxes": [
+						{
+							"id": "ValueAxis-1",
+							"title": "Number"
+						}
+					],
+					"allLabels": [],
+					"balloon": {},
+					"legend": {
+						"enabled": true,
+						"useGraphSettings": true
+					},
+					"titles": [
+						{
+							"id": "Title-1",
+							"size": 15,
+							"text": "Call status"
+						}
+					],
+					"dataProvider":
+						chartData
+
+				}
+			);
+
+		</script>
+
+		<!--Period INCOMING OUTGOING chart-->
+		<script type="text/javascript">
+			var chartData = {{ period_data | safe }}
+			var mgw_operator = [['mgw_frs_vali', 'shatel'], ['mgw_frs_vali', 'mci']]
+			chart_period = new AmCharts.makeChart("period_chart", {
+			    "type": "serial",
+			    "theme": "light",
+			    "marginRight": 80,
+			    "autoMarginOffset": 20,
+			    "marginTop": 7,
+			    "dataProvider": chartData[0],
+			    "valueAxes": [{
+			        "axisAlpha": 0.2,
+			        "dashLength": 1,
+			        "position": "left"
+			    }],
+			    "mouseWheelZoomEnabled": true,
+			    "graphs": [{
+			        "id": "g1",
+			        "balloonText": "[[value]]",
+			        "bullet": "round",
+			        "bulletBorderAlpha": 1,
+			        "bulletColor": "#FFFFFF",
+			        "hideBulletsCount": 50,
+			        "title": "Incomming Call      ",
+			        "valueField": "Incomming Call",
+			        <!--"type": "smoothedLine",-->
+			        "useLineColorForBulletBorder": true,
+			        "balloon":{
+			            "drop":true
+			        }
+			        },
+			        {
+			        "id": "g2",
+			        "balloonText": "[[value]]",
+			        "bullet": "round",
+			        "bulletBorderAlpha": 1,
+			        "bulletColor": "#FFFFFF",
+			        "hideBulletsCount": 50,
+			        "title": "Outgoing Call",
+			        "valueField": "Outgoing Call",
+			        <!--"type": "smoothedLine",-->
+			        "useLineColorForBulletBorder": true,
+			        "balloon":{
+			            "drop":true
+			        }
+			    }],
+
+			    "legend": {
+						"enabled": true,
+						"useGraphSettings": true,
+						"position":"bottom",
+                        "marginRight":100,
+                        "autoMargins":false,
+						"valueText" : "[[value]]"
+				},
+			    "chartScrollbar": {
+			        "autoGridCount": true,
+			        "graph": "g1",
+			        "scrollbarHeight": 40
+			    },
+			    "chartCursor": {
+			       "limitToGraph":"g1",
+			       "limitToGraph":"g2"
+			    },
+			    "categoryField": "Date",
+			    "categoryAxis": {
+			        "parseDates": true,
+			        "axisColor": "#DADADA",
+			        "dashLength": 1,
+			        "minorGridEnabled": true
+			    },
+			    "export": {
+			        "enabled": true
+			    }
+			});
+
+			chart_period.addListener("rendered", zoomChart);
+			zoomChart();
+
+			// this method is called when chart is first inited as we listen for "rendered" event
+			function zoomChart() {
+			    // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
+			    chart_period.zoomToIndexes(chartData.length + 5, chartData.length -25);
+			}
+			function selectDatasetPeriod() {
+				var mgw = document.getElementsByName('dataset_period_MGW');
+				var operator = document.getElementsByName('dataset_period_Operator');
+				for (i = 0; i < mgw.length; i++) {
+					 if(mgw[i].checked){
+                        var mgw_name = mgw[i].value;
+                    }
+				}
+				for (i = 0; i < operator.length; i++) {
+					 if(operator[i].checked){
+                        var operator_name = operator[i].value;
+                    }
+                }
+                for (i = 0; i < mgw_operator.length; i++) {
+                   if (mgw_operator[i][0] == mgw_name && mgw_operator[i][1] == operator_name) {
+                       chart_period.dataProvider = chartData[i];
+					}
+				}
+				chart_period.validateData();
+				chart_period.animateAgain();
+			}
+		</script>
+
+{% endblock %}
+
+
+{% block chart %}
+
+
+	<hr class="divider">
+	<hr class="divider">
+	<div class="container">
+	<table class="table table-bordered">
+		  <thead class="head-inverse">
+		    <tr style="background-color:#0000ff; color: #ffffff; box-shadow:3px 3px 3px #999">
+
+		        <th class="text-center" style="font-size:18px">Selected MGWs</th>
+		        <th class="text-center" style="font-size:18px">Source Prefixes</th>
+		        <th class="text-center"style="font-size:18px">Destination Prefixes</th>
+			    <th class="text-center"style="font-size:18px">Start Date</th>
+			    <th class="text-center"style="font-size:18px">End Date</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr style="box-shadow:3px 3px 3px #999;">
+			  <td class="text-center" style="font-size:18px">{% for mgw in user_selected_mgw %}
+			        {{mgw}}<br>
+			      {% endfor %}
+		      </td>
+		      <td class="text-center align-middle" style="font-size:18px">{% for prefix in source_prefix %}
+			        {{prefix}}<br>
+			      {% endfor %}
+		      </td>
+		      <td class="text-center"style="font-size:18px">{% for prefix in destination_prefix %}
+			        {{prefix}}<br>
+			      {% endfor %}
+		      </td>
+		      <td class="text-center"style="font-size:18px">{% for date in start_date %}{{date}}{% endfor %}
+		      </td>
+			  <td class="text-center"style="font-size:18px">{% for date in end_date %}
+			        {{date}}
+			      {% endfor %}
+		      </td>
+		    </tr>
+		  </tbody>
+	</table>
+</div>
+	<hr class="divider">
+	<div class="container-fluid">
+		<div class="row">
+
+		</div>
+		<div class="row">
+
+		</div>
+		<div class="row">
+			<div class="col-sm-1"></div>
+            <div class="col-sm-5" style="border-style:double;background-color:#ffffff;box-shadow:3px 3px 3px #999;">
+				<div class="chart-container">
+						<div id="Duration" style="width: 100%; height: 400px; background-color: #ffffff;" ></div> <!--Incoming/Outgoing Duration from Shatel-->
+				</div>
+            </div>
+            <div class="col-sm-5" style="border-style:double;background-color:#ffffff;box-shadow:3px 3px 3px #999;">
+				<div class="chart-container">
+						<div id="NER" style="width: 100%; height: 400px; background-color: #ffffff;" ></div>
+				</div>
+            </div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-lg-10" style="border-style:double;background-color:#ffffff; box-shadow:3px 3px 3px #999;">
+				<div class="chart-container">
+					<div id="crinfo" style="width: 100%; height: 362px;"></div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+{% endblock %}
