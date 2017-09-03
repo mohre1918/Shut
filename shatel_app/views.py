@@ -138,20 +138,20 @@ def Dashboard(request):
 
 
     ############### duration per provinces #############
-    Incomming_duration_per_province = duration_per_province_result2Postgres.Incomming_duration_per_province_data_read(dates)
-    for i in range(0,len(Incomming_duration_per_province)):
+    Incoming_duration_per_province = duration_per_province_result2Postgres.Incoming_duration_per_province_data_read(dates)
+    for i in range(0,len(Incoming_duration_per_province)):
         # print duration_per_province[i]
-        Incomming_duration_per_province[i] = eval(Incomming_duration_per_province[i])
+        Incoming_duration_per_province[i] = eval(Incoming_duration_per_province[i])
     Outgoing_duration_per_province = duration_per_province_result2Postgres.Outgoing_duration_per_province_data_read(dates)
     for i in range(0,len(Outgoing_duration_per_province)):
         # print duration_per_province[i]
         Outgoing_duration_per_province[i] = eval(Outgoing_duration_per_province[i])
 
     ############## crinfo per provinces ################
-    Incomming_crinfo_per_province = duration_per_province_result2Postgres.Incomming_crinfo_per_province_data_read(dates)
-    for i in range(0,len(Incomming_crinfo_per_province)):
-        Incomming_crinfo_per_province[i] = eval(Incomming_crinfo_per_province[i])
+    Incoming_crinfo_per_province = duration_per_province_result2Postgres.Incoming_crinfo_per_province_data_read(dates)
+    for i in range(0,len(Incoming_crinfo_per_province)):
+        Incoming_crinfo_per_province[i] = eval(Incoming_crinfo_per_province[i])
     Outgoing_crinfo_per_province = duration_per_province_result2Postgres.Outgoing_crinfo_per_province_data_read(dates)
     for i in range(0,len(Outgoing_crinfo_per_province)):
         Outgoing_crinfo_per_province[i] = eval(Outgoing_crinfo_per_province[i])
-    return render(request, 'Dashboard.html', {"DateList": DateList,"period_data" : json.dumps(period_data), "Incomming_duration_per_province" : json.dumps(Incomming_duration_per_province), "Outgoing_duration_per_province" : json.dumps(Outgoing_duration_per_province), "duration_per_operator": json.dumps(duration_per_operator), "Incomming_crinfo_data": json.dumps(Incomming_crinfo_per_province), "Outgoing_crinfo_data": json.dumps(Outgoing_crinfo_per_province), "mgws":mgws, "operators":operators, "mgw_operator":json.dumps(mgw_operator)})
+    return render(request, 'Dashboard.html', {"DateList": DateList,"period_data" : json.dumps(period_data), "Incoming_duration_per_province" : json.dumps(Incoming_duration_per_province), "Outgoing_duration_per_province" : json.dumps(Outgoing_duration_per_province), "duration_per_operator": json.dumps(duration_per_operator), "Incoming_crinfo_data": json.dumps(Incoming_crinfo_per_province), "Outgoing_crinfo_data": json.dumps(Outgoing_crinfo_per_province), "mgws":mgws, "operators":operators, "mgw_operator":json.dumps(mgw_operator)})

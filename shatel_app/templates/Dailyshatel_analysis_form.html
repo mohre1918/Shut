@@ -36,6 +36,7 @@ $("document").ready(function() {
 					    <span class="sr-only">Toggle Dropdown</span>
 					  </button>
 					<ul class="dropdown-menu dropdown-menu-form" role="menu" style="background-color:#74a7c6; color:#000000">
+						<li><label style="padding-left:5px;width:180px; font-size:16px;"><input type="checkbox" onClick="mgw_toggle(this)" /> Select All</label></li>
 						{% for mgw in mgws %}
 							{% if mgw in user_selected_mgw %}
 								<li><label style="padding-left:5px;width:180px"><input type="checkbox" name="MGW" value="{{mgw}}" checked/>{{mgw}}</label></li>

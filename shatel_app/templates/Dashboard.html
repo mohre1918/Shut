@@ -54,10 +54,10 @@ $("document").ready(function() {
 							"balloonText": "[[title]] of [[Operator]]:[[value]]",
 							"fillAlphas": 1,
 							"id": "AmGraph-1",
-							"title": "Incomming call",
+							"title": "Incoming call",
 							"type": "column",
 							"valueAxis": "ValueAxis-1",
-							"valueField": "Incomming call",
+							"valueField": "Incoming call",
 						},
 						{
 							"balloonText": "[[title]] of [[Operator]]:[[value]]",
@@ -102,13 +102,13 @@ $("document").ready(function() {
 
 		</script>
 		<script type="text/javascript">
-			var chartData_duration_per_operator_pie_Incomming = {{ duration_per_operator | safe }}
-			chart2_pie_Incomming = new AmCharts.makeChart("duration_per_operator_pie_Incomming",
+			var chartData_duration_per_operator_pie_Incoming = {{ duration_per_operator | safe }}
+			chart2_pie_Incoming = new AmCharts.makeChart("duration_per_operator_pie_Incoming",
 				{
 					"type": "pie",
 					"theme": "light",
-				    "valueField": "Incomming call",
-				    "dataProvider": chartData_duration_per_operator_pie_Incomming[0],
+				    "valueField": "Incoming call",
+				    "dataProvider": chartData_duration_per_operator_pie_Incoming[0],
 					"titleField": "Operator",
 				    "balloon":{
 				        "fixedPosition":true
@@ -120,7 +120,7 @@ $("document").ready(function() {
 						{
 							"id": "Title-1",
 							"size": 15,
-							"text": "Incomming Percentage"
+							"text": "Incoming Percentage"
 						}
 					]
 				});
@@ -147,9 +147,9 @@ $("document").ready(function() {
 					]
 				});
 			function selectDataset_duration_per_operator_pie(d) {
-				chart2_pie_Incomming.dataProvider = chartData_duration_per_operator_pie_Incomming[d];
-				chart2_pie_Incomming.validateData();
-				chart2_pie_Incomming.animateAgain();
+				chart2_pie_Incoming.dataProvider = chartData_duration_per_operator_pie_Incoming[d];
+				chart2_pie_Incoming.validateData();
+				chart2_pie_Incoming.animateAgain();
 				chart2_pie_Outgoing.dataProvider = chartData_duration_per_operator_pie_Outgoing[d];
 				chart2_pie_Outgoing.validateData();
 				chart2_pie_Outgoing.animateAgain();
@@ -158,8 +158,8 @@ $("document").ready(function() {
 		</script>
 
 		<script type="text/javascript">
-			var chartData_Incomming_duration_per_province = {{ Incomming_duration_per_province | safe }}
-			chart3_Incomming = new AmCharts.makeChart("Incomming_duration_per_province",
+			var chartData_Incoming_duration_per_province = {{ Incoming_duration_per_province | safe }}
+			chart3_Incoming = new AmCharts.makeChart("Incoming_duration_per_province",
 				{
 					"type": "serial",
 					"categoryField": "MGW",
@@ -206,17 +206,17 @@ $("document").ready(function() {
 						{
 							"id": "Title-1",
 							"size": 15,
-							"text": "Incomming Duration per Provinces"
+							"text": "Incoming Duration per Provinces"
 						}
 					],
 					"dataProvider":
-						chartData_Incomming_duration_per_province[0]
+						chartData_Incoming_duration_per_province[0]
 				}
 			);
-			function selectDataset_Incomming_duration_per_province(d) {
-				chart3_Incomming.dataProvider = chartData_Incomming_duration_per_province[d];
-				chart3_Incomming.validateData();
-				chart3_Incomming.animateAgain();
+			function selectDataset_Incoming_duration_per_province(d) {
+				chart3_Incoming.dataProvider = chartData_Incoming_duration_per_province[d];
+				chart3_Incoming.validateData();
+				chart3_Incoming.animateAgain();
 			}
 		</script>
 		<script type="text/javascript">
@@ -281,8 +281,8 @@ $("document").ready(function() {
 
 
 		<script type="text/javascript">
-			var chartData_Incomming_crinfo = {{ Incomming_crinfo_data | safe }}
-			chart4_Incomming = new AmCharts.makeChart("Incomming_crinfo",
+			var chartData_Incoming_crinfo = {{ Incoming_crinfo_data | safe }}
+			chart4_Incoming = new AmCharts.makeChart("Incoming_crinfo",
 				{
 					"type": "serial",
 					"categoryField": "MGW",
@@ -388,20 +388,20 @@ $("document").ready(function() {
 						{
 							"id": "Title-1",
 							"size": 15,
-							"text": "Incomming Call status"
+							"text": "Incoming Call status"
 						}
 					],
 					"dataProvider":
-						chartData_Incomming_crinfo[0]
+						chartData_Incoming_crinfo[0]
 
 				}
 			);
 
 
-			function selectDataset_Incomming_crinfo(d) {
-				chart4_Incomming.dataProvider = chartData_Incomming_crinfo[d];
-				chart4_Incomming.validateData();
-				chart4_Incomming.animateAgain();
+			function selectDataset_Incoming_crinfo(d) {
+				chart4_Incoming.dataProvider = chartData_Incoming_crinfo[d];
+				chart4_Incoming.validateData();
+				chart4_Incoming.animateAgain();
 			}
 		</script>
 		<script type="text/javascript">
@@ -558,8 +558,8 @@ $("document").ready(function() {
 			        "bulletBorderAlpha": 1,
 			        "bulletColor": "#FFFFFF",
 			        "hideBulletsCount": 50,
-			        "title": "Incomming Call      ",
-			        "valueField": "Incomming Call",
+			        "title": "Incoming Call      ",
+			        "valueField": "Incoming Call",
 			        <!--"type": "smoothedLine",-->
 			        "useLineColorForBulletBorder": true,
 			        "balloon":{
@@ -736,7 +736,7 @@ $("document").ready(function() {
 											<br><br>
 					<table>
 					  <tr>
-					    <td><div id="duration_per_operator_pie_Incomming" style="width:550px; height: 500px; background-color: #FFF8DC;" ></div> <!--Incoming/Outgoing Duration from Shatel--></td>
+					    <td><div id="duration_per_operator_pie_Incoming" style="width:550px; height: 500px; background-color: #FFF8DC;" ></div> <!--Incoming/Outgoing Duration from Shatel--></td>
 					    <td><div id="duration_per_operator_pie_Outgoing" style="width:550px; height: 500px; background-color: #FFF8DC;" ></div> <!--Incoming/Outgoing Duration from Shatel--></td>
 					  </tr>
 					</table>
@@ -765,15 +765,15 @@ $("document").ready(function() {
 						    {% for date in DateList %}
 						        {% if date == "1day" %}
 						            &nbsp;&nbsp;&nbsp;
-						            <label><input type="radio" value="{{forloop.counter0}}" name="Incomming_duration_per_province" checked="checked" onclick="selectDataset_Incomming_duration_per_province({{forloop.counter0}});"/> {{date }}</label>
+						            <label><input type="radio" value="{{forloop.counter0}}" name="Incoming_duration_per_province" checked="checked" onclick="selectDataset_Incoming_duration_per_province({{forloop.counter0}});"/> {{date }}</label>
 						        {% else %}
 								    &nbsp;&nbsp;&nbsp;
-								    <label><input type="radio" value="{{forloop.counter0}}" name="Incomming_duration_per_province" onclick="selectDataset_Incomming_duration_per_province({{forloop.counter0}});"/> {{date}}</label>
+								    <label><input type="radio" value="{{forloop.counter0}}" name="Incoming_duration_per_province" onclick="selectDataset_Incoming_duration_per_province({{forloop.counter0}});"/> {{date}}</label>
 						        {% endif %}
 						    {% endfor %}
 						</div>
 						<br><br>
-						<div id="Incomming_duration_per_province" style="width: 100%; height: 600px; background-color:#FFF8DC;" ></div>
+						<div id="Incoming_duration_per_province" style="width: 100%; height: 600px; background-color:#FFF8DC;" ></div>
 					</div>
                  </div>
 			</div>
@@ -811,15 +811,15 @@ $("document").ready(function() {
 					    {% for date in DateList %}
 					        {% if date == "1day" %}
 					             &nbsp;&nbsp;&nbsp;
-					            <label><input type="radio" value="{{forloop.counter0}}" name="Incomming_crinfo" onclick="selectDataset_Incomming_crinfo({{forloop.counter0}});" checked="checked"/> {{date}}</label>
+					            <label><input type="radio" value="{{forloop.counter0}}" name="Incoming_crinfo" onclick="selectDataset_Incoming_crinfo({{forloop.counter0}});" checked="checked"/> {{date}}</label>
 					        {% else %}
 					             &nbsp;&nbsp;&nbsp;
-					            <label><input type="radio" value="{{forloop.counter0}}" name="Incomming_crinfo" onclick="selectDataset_Incomming_crinfo({{forloop.counter0}});"/> {{date}}</label>
+					            <label><input type="radio" value="{{forloop.counter0}}" name="Incoming_crinfo" onclick="selectDataset_Incoming_crinfo({{forloop.counter0}});"/> {{date}}</label>
 					        {% endif %}
 					    {% endfor %}
 					</div>
 					<br><br>
-					<div id="Incomming_crinfo" style="width: 100%; height: 600px;"></div>
+					<div id="Incoming_crinfo" style="width: 100%; height: 600px;"></div>
 				</div>
 			</div>
 		</div>

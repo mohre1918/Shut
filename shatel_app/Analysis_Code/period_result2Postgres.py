@@ -9,6 +9,8 @@ def period_data_generate(mgws, operators):
     # mgws = ['MGW_HMN_EALI', 'MGW_KOR_SAN', 'MGW_YZD_SADQ', 'MGW_QOM_QOM', 'MGW_ZNJ_PC', 'MGW_SMN_AMLO', 'MGW_OUR_MDRS', 'MGW_KRM_VASR', 'MGW_BOU_BHMN', 'MGW_HAM_TAHER', 'MGW_FRS_VALI', 'MGW_MZN_EMAM', 'MGW_ESF_EMAM1', 'MGW_ESF_EMAM2', 'MGW_ABZ_KRJ', 'MGW_KHZ_VALI1', 'MGW_CMB_PC', 'MGW_GLN_GLSR', 'MGW_GRN_EMAM', 'MGW_TAB_RHMI', 'MGW_TEH_ISC2', 'MGW_KHR_FRSH']
     # operators = ['shatel', 'mci', 'mtn', 'rtl', 'TCI', 'TIC', 'Undefined']
     period_data = []
+    data = mycode.showDistDur(mgws,(datetime.datetime.today() + datetime.timedelta(-365)).strftime('%Y-%m-%d'),datetime.datetime.now().strftime("%Y-%m-%d"),operators)
+    period_data.append(data)
     for mgw in mgws:
         for operator in operators:
             data = mycode.showDistDur([mgw],(datetime.datetime.today() + datetime.timedelta(-365)).strftime('%Y-%m-%d'),datetime.datetime.now().strftime("%Y-%m-%d"),[operator])

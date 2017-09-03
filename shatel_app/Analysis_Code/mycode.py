@@ -49,6 +49,7 @@ def prefix_analyzeMP(mgw, stime, etime, prefixlist, prefixlist_DST, crinfo, sumd
 # dar yek mgw va dar beyne stime o etime tamas az operator list ra be yek opliste digar midahad
 # *******************************************
 def opname_analyzeMP(mgw, stime, etime, oplist_SRC, oplist_DST, crinfo, sumdur):
+    cur = conn.cursor()
     query = "select stime,duration,crinfo from " + mgw + " where (ocgpn is not null and stime>'" + stime + "' and stime<'" + etime + "' and " + str(oplist_SRC) + " and " + str(oplist_DST) + ")"
     cur.execute(query)
     while True:
@@ -158,10 +159,6 @@ def Period_shatel_analysis(mgw,stime,etime,opname):
     dist = delta.days
     stime = datetime.strptime(stime, form)
     temp = [[], []]
-    # print mgw
-
-
-    # select sum(duration) from (select * from mgw_abz_krj UNION select * from mgw_frs_vali) as a where (caller = 'shatel' or caller = 'mtn') and (called = 'shatel' or called = 'mci')
 
     Outgoing_query = "select sum(duration) from (select * from "+mgw[0]
 
@@ -174,7 +171,6 @@ def Period_shatel_analysis(mgw,stime,etime,opname):
 
     for i in range(0,dist):
         query = Outgoing_query + " and stime > '"+str(stime + timedelta(i))+"' and stime < '"+str(stime + timedelta(i+1))+"'"
-        print  query
         cur.execute(query)
         row = cur.fetchone()
         if row[0]==None:
@@ -194,7 +190,6 @@ def Period_shatel_analysis(mgw,stime,etime,opname):
 
     for i in range(0,dist):
         query = Incoming_query + " and stime > '"+str(stime + timedelta(i))+"' and stime < '"+str(stime + timedelta(i+1))+"'"
-        print  query
         cur.execute(query)
         row = cur.fetchone()
         if row[0]==None:
@@ -344,8 +339,8 @@ def dailyshatel(mgw, date):
     for counter in range(0, len(temp[0])):
         dictionary.append({})
         dictionary[counter]['Operator'] = temp[1][counter]
-        dictionary[counter]['Outgoing call'] = round(temp[0][counter][0]/3600,2)
-        dictionary[counter]['Incomming call'] = round(temp[0][counter][1]/3600,2)
+        dictionary[counter]['Outgoing call'] = round(temp[0][counter][0]/60,2)
+        dictionary[counter]['Incoming call'] = round(temp[0][counter][1]/60,2)
     return dictionary
 
 
@@ -360,8 +355,8 @@ def tailyshatel(mgw, stime, etime):
     for counter in range(0, len(temp[0])):
         dictionary.append({})
         dictionary[counter]['Operator'] = temp[1][counter]
-        dictionary[counter]['Outgoing call'] = round(temp[0][counter][0]/3600,2)
-        dictionary[counter]['Incomming call'] = round(temp[0][counter][1]/3600,2)
+        dictionary[counter]['Outgoing call'] = round(temp[0][counter][0]/60,2)
+        dictionary[counter]['Incoming call'] = round(temp[0][counter][1]/60,2)
     return dictionary
 
 
@@ -398,7 +393,7 @@ def prefixanalysis(mgw, stime, etime, prefix_SRC, prefix_DST):
         crinfo = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         sumdur = 0
         result = prefix_analyzeMP(mgw, stime, etime, prefixlist, prefixlist_DST, crinfo, sumdur)
-        dictionary_duration[counter]['Duration'] = round(result[1]/3600,2)
+        dictionary_duration[counter]['Duration'] = round(result[1]/60,2)
         dictionary_crinfo[counter]['user answer'] = result[0][1]
         dictionary_crinfo[counter]['user called, but no-answer'] = result[0][2]
         dictionary_crinfo[counter]['incomplete number'] = result[0][3]
@@ -433,8 +428,8 @@ def showDistDur(mgw, stime, etime, opname):
         if temp[0][counter] is None:
             temp[0][counter]=0
             temp[1][counter]=0
-        dictionary[counter]['Outgoing Call'] = round(temp[0][counter]/3600,2)
-        dictionary[counter]['Incomming Call'] = round(temp[1][counter]/3600,2)
+        dictionary[counter]['Outgoing Call'] = round(temp[0][counter]/60,2)
+        dictionary[counter]['Incoming Call'] = round(temp[1][counter]/60,2)
     return dictionary
 
 
@@ -471,7 +466,7 @@ def operatordanalysis(mgw, stime, etime, name_SRC, name_DST):
         crinfo = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         sumdur = 0
         result = (opname_analyzeMP(mgw, stime, etime, namelist_src, namelist_dst, crinfo, sumdur))
-        dictionary_duration[counter]['Duration'] = round(result[1]/3600,2)
+        dictionary_duration[counter]['Duration'] = round(result[1]/60,2)
         dictionary_crinfo[counter]['user answer'] = result[0][1]
         dictionary_crinfo[counter]['user called, but no-answer'] = result[0][2]
         dictionary_crinfo[counter]['incomplete number'] = result[0][3]

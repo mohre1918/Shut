@@ -11,10 +11,10 @@ deltas = [-1 , -7, -30,-90,-180,-365]
 
 
 ##################### Downloads MediaGateway files ####################
-execfile("ftpdownload.py")
-##################### Edit files and Copy to Databases ################
-for i in range(0,len(mgws)):
-    COPY(mgws[i], prefixes[i])
+# execfile("ftpdownload.py")
+# ##################### Edit files and Copy to Databases ################
+# for i in range(0,len(mgws)):
+#     COPY(mgws[i], prefixes[i])
 
 #################### Copy period result 2 postgres ####################
 

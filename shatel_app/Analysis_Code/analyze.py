@@ -173,7 +173,7 @@ def distDurMultiOp(mgw,stime,etime,opname):
 #         sumdur=0
 #         itemp=dailyanalyze(mgw,date,operators,'shatel',crinfo,sumdur)
 #         result[counter]['Outgoing Call']=str(otemp[1])
-#         result[counter]['Incomming Call']=str(itemp[1])
+#         result[counter]['Incoming Call']=str(itemp[1])
 #         counter += 1
 #     return result
 

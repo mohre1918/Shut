@@ -24,11 +24,11 @@ def Outgoing_duration_per_operator_data_generate(mgws, operators, dates, deltas)
             params = config()
             conn = psycopg2.connect(**params)
             cur = conn.cursor()
-            duration_query = "create table if not exists dashboard.Incomming_duration_per_province_"+dates[i]+"_result(result text, time timestamp without time zone)"
+            duration_query = "create table if not exists dashboard.Incoming_duration_per_province_"+dates[i]+"_result(result text, time timestamp without time zone)"
             cur.execute(duration_query)
             # cur.close()
             cur = conn.cursor()
-            crinfo_query = "create table if not exists dashboard.Incomming_crinfo_per_province_"+dates[i]+"_result(result text, time timestamp without time zone)"
+            crinfo_query = "create table if not exists dashboard.Incoming_crinfo_per_province_"+dates[i]+"_result(result text, time timestamp without time zone)"
             cur.execute(crinfo_query)
             # cur.close()
             duration_query = "create table if not exists dashboard.Outgoing_duration_per_province_"+dates[i]+"_result(result text, time timestamp without time zone)"
@@ -96,8 +96,8 @@ def Incommming_duration_per_operator_data_generate(mgws, operators, dates, delta
         crinfo = str(crinfo)
         crinfo = crinfo.replace("'", "''")
         print crinfo
-        duration_query = "insert into dashboard.Incomming_duration_per_province_"+dates[i]+"_result(result, time) VALUES ('"+duration+"', '"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")+"');"
-        crinfo_query = "insert into dashboard.Incomming_crinfo_per_province_"+dates[i]+"_result(result, time) VALUES ('"+crinfo+"', '"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")+"');"
+        duration_query = "insert into dashboard.Incoming_duration_per_province_"+dates[i]+"_result(result, time) VALUES ('"+duration+"', '"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")+"');"
+        crinfo_query = "insert into dashboard.Incoming_crinfo_per_province_"+dates[i]+"_result(result, time) VALUES ('"+crinfo+"', '"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")+"');"
         try:
             params = config()
             conn = psycopg2.connect(**params)
@@ -124,7 +124,7 @@ def Incommming_duration_per_operator_data_generate(mgws, operators, dates, delta
 
 
 
-def Incomming_duration_per_province_data_read(dates):
+def Incoming_duration_per_province_data_read(dates):
     conn = None
     row = []
     try:
@@ -132,7 +132,7 @@ def Incomming_duration_per_province_data_read(dates):
         conn = psycopg2.connect(**params)
         for i in range(0, len(dates)):
             cur = conn.cursor()
-            query = "select result from dashboard.Incomming_duration_per_province_"+dates[i]+"_result order by time DESC limit 1"
+            query = "select result from dashboard.Incoming_duration_per_province_"+dates[i]+"_result order by time DESC limit 1"
             cur.execute(query)
             row_temp = cur.fetchone()
             row.append(row_temp[0])
@@ -146,7 +146,7 @@ def Incomming_duration_per_province_data_read(dates):
             conn.close()
             print('Database connection closed.')
 
-def Incomming_crinfo_per_province_data_read(dates):
+def Incoming_crinfo_per_province_data_read(dates):
     conn = None
     row = []
     try:
@@ -154,7 +154,7 @@ def Incomming_crinfo_per_province_data_read(dates):
         conn = psycopg2.connect(**params)
         for i in range(0, len(dates)):
             cur = conn.cursor()
-            query = " select result from dashboard.Incomming_crinfo_per_province_"+dates[i]+"_result order by time DESC limit 1"
+            query = " select result from dashboard.Incoming_crinfo_per_province_"+dates[i]+"_result order by time DESC limit 1"
             cur.execute(query)
             row_temp = cur.fetchone()
             row.append(row_temp[0])
