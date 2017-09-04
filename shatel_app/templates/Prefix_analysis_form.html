@@ -8,16 +8,6 @@
 {% block Dashboard %}
 <!--<div class="container">-->
 
-<script>
-$("document").ready(function() {
-
-  $('.dropdown-menu').on('click', function(e) {
-      if($(this).hasClass('dropdown-menu-form')) {
-          e.stopPropagation();
-      }
-  });
-});
-</script>
 
 <form class="form-inline" action="/PrefixAnalysis/" method="post">
 	{% csrf_token %}

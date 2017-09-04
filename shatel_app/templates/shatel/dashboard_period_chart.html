@@ -1,0 +1,207 @@
+<script type="text/javascript">
+			var chartData = {{ period_data | safe }}
+			var mgw_operator = {{ mgw_operator | safe }}
+			chart_period = new AmCharts.makeChart("period_chart", {
+			    "type": "serial",
+			    "theme": "light",
+			    "marginRight": 80,
+			    "autoMarginOffset": 20,
+			    "marginTop": 7,
+			    "dataProvider": chartData[183],
+			    "fontSize":13,
+			    "valueAxes": [{
+			        "axisAlpha": 0.2,
+			        "dashLength": 1,
+			        "position": "left"
+			    }],
+			    "mouseWheelZoomEnabled": true,
+			    "graphs": [{
+			        "id": "g1",
+			        "balloonText": "[[value]]",
+			        "lineColor":"#4B0082",
+			        "bullet": "round",
+			        "lineThickness":3,
+			        "bulletBorderAlpha": 1,
+			        "bulletColor": "#FFFFFF",
+			        "hideBulletsCount": 50,
+			        "title": "Incoming Call      ",
+			        "valueField": "Incoming Call",
+			        <!--"type": "smoothedLine",-->
+			        "useLineColorForBulletBorder": true,
+			        "balloon":{
+			            "drop":true
+			        }
+			        },
+			        {
+			        "id": "g2",
+			        "balloonText": "[[value]]",
+			        "bullet": "round",
+			        "lineThickness":3,
+			        "lineColor":"#228B22",
+			        "bulletBorderAlpha": 1,
+			        "bulletColor": "#FFFFFF",
+			        "hideBulletsCount": 50,
+			        "title": "Outgoing Call",
+			        "valueField": "Outgoing Call",
+			        <!--"type": "smoothedLine",-->
+			        "useLineColorForBulletBorder": true,
+			        "balloon":{
+			            "drop":true
+			        }
+			    }],
+			    "legend": {
+						"enabled": true,
+						"useGraphSettings": true,
+						"position":"bottom",
+                        "marginRight":500,
+				},
+			    "chartScrollbar": {
+			        "autoGridCount": true,
+			        "graph": "g2",
+			        "scrollbarHeight": 40,
+			        "backgroundAlpha": 1,
+			        "backgroundColor": "#595959",
+			        "color": "#ffffe6",
+			    },
+			    "chartCursor": {
+			       "limitToGraph":"g1",
+			    },
+			    "categoryField": "Date",
+			    "categoryAxis": {
+			        "parseDates": true,
+			        "axisColor": "#4B0082",
+			        "dashLength": 1,
+			        "minorGridEnabled": true
+			    },
+			    "export": {
+			        "enabled": true
+			    }
+			});
+
+			chart_period.addListener("rendered", zoomChart);
+			zoomChart();
+
+			// this method is called when chart is first inited as we listen for "rendered" event
+			function zoomChart() {
+			    // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
+			    chart_period.zoomToIndexes(chartData[0].length-100, chartData[0].length-1);
+			}
+			function selectDatasetPeriod() {
+				var mgw = document.getElementsByName('dataset_period_MGW');
+				var operator = document.getElementsByName('dataset_period_Operator');
+				for (i = 0; i < mgw.length; i++) {
+					 if(mgw[i].checked){
+                        var mgw_name = mgw[i].value;
+                    }
+				}
+				for (i = 0; i < operator.length; i++) {
+					 if(operator[i].checked){
+                        var operator_name = operator[i].value;
+                    }
+                }
+                for (i = 0; i < mgw_operator.length; i++) {
+                   if (mgw_operator[i][0] == mgw_name && mgw_operator[i][1] == operator_name) {
+                       chart_period.dataProvider = chartData[i];
+					}
+				}
+				chart_period.validateData();
+				chart_period.animateAgain();
+			}
+		</script>
+
+<script type="text/javascript">
+			var chartData = {{ period_data | safe }}
+			var mgw_operator = {{ mgw_operator | safe }}
+			chart_period_all2all = new AmCharts.makeChart("period_chart_all2all", {
+			    "type": "serial",
+			    "theme": "light",
+			    "marginRight": 80,
+			    "autoMarginOffset": 20,
+			    "marginTop": 7,
+			    "dataProvider": chartData[0],
+			    "fontSize":13,
+			    "valueAxes": [{
+			        "axisAlpha": 0.2,
+			        "dashLength": 1,
+			        "position": "left"
+			    }],
+			    "mouseWheelZoomEnabled": true,
+			    "graphs": [{
+			        "id": "g1",
+			        "balloonText": "[[value]]",
+			        "lineColor":"#4B0082",
+			        "bullet": "round",
+			        "lineThickness":3,
+			        "bulletBorderAlpha": 1,
+			        "bulletColor": "#FFFFFF",
+			        "hideBulletsCount": 50,
+			        "title": "Incoming Call      ",
+			        "valueField": "Incoming Call",
+			        <!--"type": "smoothedLine",-->
+			        "useLineColorForBulletBorder": true,
+			        "balloon":{
+			            "drop":true
+			        }
+			        },
+			        {
+			        "id": "g2",
+			        "balloonText": "[[value]]",
+			        "bullet": "round",
+			        "lineThickness":3,
+			        "lineColor":"#228B22",
+			        "bulletBorderAlpha": 1,
+			        "bulletColor": "#FFFFFF",
+			        "hideBulletsCount": 50,
+			        "title": "Outgoing Call",
+			        "valueField": "Outgoing Call",
+			        <!--"type": "smoothedLine",-->
+			        "useLineColorForBulletBorder": true,
+			        "balloon":{
+			            "drop":true
+			        }
+			    }],
+				"titles": [
+						{
+							"id": "Title-1",
+							"size": 15,
+							"text": "ALL to ALL Duration"
+						}
+					],
+			    "legend": {
+						"enabled": true,
+						"useGraphSettings": true,
+						"position":"bottom",
+                        "marginRight":500,
+				},
+			    "chartScrollbar": {
+			        "autoGridCount": true,
+			        "graph": "g2",
+			        "scrollbarHeight": 40,
+			        "backgroundAlpha": 1,
+			        "backgroundColor": "#595959",
+			        "color": "#ffffe6",
+			    },
+			    "chartCursor": {
+			       "limitToGraph":"g1",
+			    },
+			    "categoryField": "Date",
+			    "categoryAxis": {
+			        "parseDates": true,
+			        "axisColor": "#4B0082",
+			        "dashLength": 1,
+			        "minorGridEnabled": true
+			    },
+			    "export": {
+			        "enabled": true
+			    }
+			});
+
+			chart_period.addListener("rendered", zoomChart);
+			zoomChart();
+
+			// this method is called when chart is first inited as we listen for "rendered" event
+			function zoomChart() {
+			    // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
+			    chart_period.zoomToIndexes(chartData[0].length-100, chartData[0].length-1);
+			}
+		</script>

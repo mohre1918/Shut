@@ -11,16 +11,8 @@
 		<link rel="stylesheet" href="{% static 'bootstrap/css/class_active.css' %}" type="text/css">
 
 		<!-- Latest compiled and minified JavaScript -->
-		<script>
-$("document").ready(function() {
 
-  $('.dropdown-menu').on('click', function(e) {
-      if($(this).hasClass('dropdown-menu-form')) {
-          e.stopPropagation();
-      }
-  });
-});
-</script>
+
 		<script type="text/javascript" src="{% static 'amcharts/amcharts/amcharts.js' %}"></script>
 		<script type="text/javascript" src="{% static 'amcharts/amcharts/serial.js' %}"></script>
 		<script type="text/javascript" src="{% static 'amcharts/amcharts/pie.js' %}"></script>
@@ -529,127 +521,14 @@ $("document").ready(function() {
 			}
 		</script>
 
-
-
-		<!--Period INCOMING OUTGOING chart-->
-		<script type="text/javascript">
-			var chartData = {{ period_data | safe }}
-			var mgw_operator = {{ mgw_operator | safe }}
-			chart_period = new AmCharts.makeChart("period_chart", {
-			    "type": "serial",
-			    "theme": "light",
-			    "marginRight": 80,
-			    "autoMarginOffset": 20,
-			    "marginTop": 7,
-			    "dataProvider": chartData[183],
-			    "fontSize":13,
-			    "valueAxes": [{
-			        "axisAlpha": 0.2,
-			        "dashLength": 1,
-			        "position": "left"
-			    }],
-			    "mouseWheelZoomEnabled": true,
-			    "graphs": [{
-			        "id": "g1",
-			        "balloonText": "[[value]]",
-			        "lineColor":"#4B0082",
-			        "bullet": "round",
-			        "lineThickness":3,
-			        "bulletBorderAlpha": 1,
-			        "bulletColor": "#FFFFFF",
-			        "hideBulletsCount": 50,
-			        "title": "Incoming Call      ",
-			        "valueField": "Incoming Call",
-			        <!--"type": "smoothedLine",-->
-			        "useLineColorForBulletBorder": true,
-			        "balloon":{
-			            "drop":true
-			        }
-			        },
-			        {
-			        "id": "g2",
-			        "balloonText": "[[value]]",
-			        "bullet": "round",
-			        "lineThickness":3,
-			        "lineColor":"#228B22",
-			        "bulletBorderAlpha": 1,
-			        "bulletColor": "#FFFFFF",
-			        "hideBulletsCount": 50,
-			        "title": "Outgoing Call",
-			        "valueField": "Outgoing Call",
-			        <!--"type": "smoothedLine",-->
-			        "useLineColorForBulletBorder": true,
-			        "balloon":{
-			            "drop":true
-			        }
-			    }],
-
-			    "legend": {
-						"enabled": true,
-						"useGraphSettings": true,
-						"position":"bottom",
-                        "marginRight":500,
-				},
-			    "chartScrollbar": {
-			        "autoGridCount": true,
-			        "graph": "g2",
-			        "scrollbarHeight": 40,
-			        "backgroundAlpha": 1,
-			        "backgroundColor": "#595959",
-			        "color": "#ffffe6",
-			    },
-			    "chartCursor": {
-			       "limitToGraph":"g1",
-			    },
-			    "categoryField": "Date",
-			    "categoryAxis": {
-			        "parseDates": true,
-			        "axisColor": "#4B0082",
-			        "dashLength": 1,
-			        "minorGridEnabled": true
-			    },
-			    "export": {
-			        "enabled": true
-			    }
-			});
-
-			chart_period.addListener("rendered", zoomChart);
-			zoomChart();
-
-			// this method is called when chart is first inited as we listen for "rendered" event
-			function zoomChart() {
-			    // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
-			    chart_period.zoomToIndexes(chartData[0].length-100, chartData[0].length-1);
-			}
-			function selectDatasetPeriod() {
-				var mgw = document.getElementsByName('dataset_period_MGW');
-				var operator = document.getElementsByName('dataset_period_Operator');
-				for (i = 0; i < mgw.length; i++) {
-					 if(mgw[i].checked){
-                        var mgw_name = mgw[i].value;
-                    }
-				}
-				for (i = 0; i < operator.length; i++) {
-					 if(operator[i].checked){
-                        var operator_name = operator[i].value;
-                    }
-                }
-                for (i = 0; i < mgw_operator.length; i++) {
-                   if (mgw_operator[i][0] == mgw_name && mgw_operator[i][1] == operator_name) {
-                       chart_period.dataProvider = chartData[i];
-					}
-				}
-				chart_period.validateData();
-				chart_period.animateAgain();
-			}
-		</script>
+		{% include "shatel/dashboard_period_chart.html" %}
 
 {% endblock %}
 
 {% block Dashboard %}
 
-	<div class="container">
-		<div class="row" style="border-style: double;background-color:#FFF8DC;">
+	<div class="container-fluid">
+		<div class="row" style="margin-left:25px;  width: 98%; border-style: double;background-color:#FFF8DC;">
 		<br>
             <div class="col-sm-12">
 				<div class="chart-container">
@@ -658,7 +537,6 @@ $("document").ready(function() {
 					  <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" style="margin-top: 10px;margin-left: 10px">Province&nbsp;&nbsp;<span class="caret"></span></button>
 					    <ul class="dropdown-menu dropdown-menu-form" role="menu" style="width:200px">
 						    {% for mgw in mgws %}
-						        &nbsp;
 						    {% if mgw == "MGW_TEH_ISC2" %}
 							    <label><input type="radio" value="{{mgw}}" name="dataset_period_MGW" checked="checked"/>{{mgw}}</label>
 						    {% else %}
@@ -690,13 +568,21 @@ $("document").ready(function() {
 
 					</form>
 					</div>
-						<div id="period_chart" style="width: 100%; height: 600px; background-color:#FFF8DC; margin-top:50px" ></div> <!--Incoming/Outgoing Duration from Shatel-->
+	            <table>
+		            <tr>
+		            <td><div id="period_chart"         style="width:900px; height: 600px; background-color:#FFF8DC; margin-top:50px" ></div></td> <!--Incoming/Outgoing Duration from Shatel-->
+		            <td><div id="period_chart_all2all" style="width:900px; height: 600px; background-color:#FFF8DC;" ></div></td> <!--Incoming/Outgoing Duration from Shatel-->
+		            </tr>
+                </table>
             </div>
 		</div>
-				<div class="row">
+	</div>
+
+
+		<div class="row">
 			<hr style="border-width: 5px; border-color:#f2f2f2">
 		</div>
-	</div>
+
 		<div class="row">
             <div class="col-sm-12"  style="border-style: double;  width:38%;margin-left:25px;background-color:#FFF8DC; ">
 				<div class="chart-container">

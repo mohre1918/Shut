@@ -11,20 +11,20 @@ deltas = [-1 , -7, -30,-90,-180,-365]
 
 
 ##################### Downloads MediaGateway files ####################
-# execfile("ftpdownload.py")
-# ##################### Edit files and Copy to Databases ################
-# for i in range(0,len(mgws)):
-#     COPY(mgws[i], prefixes[i])
+execfile("ftpdownload.py")
+##################### Edit files and Copy to Databases ################
+for i in range(0,len(mgws)):
+    COPY(mgws[i], prefixes[i])
 
-#################### Copy period result 2 postgres ####################
+################### Copy period result 2 postgres ####################
 
 period_data_generate(mgws, operators)
 
-################## Copy duration per operator result 2 postgres #####
-duration_per_operator_data_generate(mgws,dates, deltas)
-
-################## Copy duration and crinfo per Province result 2 postgres ###########
-Outgoing_duration_per_operator_data_generate(mgws, operators, dates, deltas)
-Incommming_duration_per_operator_data_generate(mgws, operators, dates, deltas)
+# ################# Copy duration per operator result 2 postgres #####
+# duration_per_operator_data_generate(mgws,dates, deltas)
+#
+# ################## Copy duration and crinfo per Province result 2 postgres ###########
+# Outgoing_duration_per_operator_data_generate(mgws, operators, dates, deltas)
+# Incommming_duration_per_operator_data_generate(mgws, operators, dates, deltas)
 
 

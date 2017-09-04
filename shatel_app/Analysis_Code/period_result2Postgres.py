@@ -20,13 +20,14 @@ def period_data_generate(mgws, operators):
     value = value.replace("'", "''")
     value = value.replace("None", "0")
     # print value
-    query = "insert into dashboard.period_result(result, time) VALUES ('"+value+"', '"+datetime.datetime.now().strftime("%Y-%m-%d")+"');"
+    query = "insert into dashboard.period_result(result, time) VALUES ('"+value+"', '"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")+"');"
     conn = None
     try:
         params = config()
         conn = psycopg2.connect(**params)
         cur = conn.cursor()
         cur.execute(query)
+        print query
         cur.close()
         conn.commit()
     except (Exception, psycopg2.DatabaseError) as error:
@@ -60,12 +61,12 @@ def period_data_read():
 
 
 
-
-if __name__ == '__main__':
-    mgws = ['MGW_HMN_EALI', 'MGW_KOR_SAN', 'MGW_YZD_SADQ', 'MGW_QOM_QOM', 'MGW_ARB_PC', 'MGW_ZNJ_PC', 'MGW_SMN_AMLO', 'MGW_OUR_MDRS', 'MGW_KRM_VASR', 'MGW_BOU_BHMN', 'MGW_HAM_TAHER', 'MGW_MZN_EMAM2', 'MGW_TEH_SC21','MGW_FRS_VALI', 'MGW_ESF_EMAM1', 'MGW_ESF_EMAM2', 'MGW_ABZ_KRJ', 'MGW_KHZ_VALI2', 'MGW_KHZ_VALI1', 'MGW_CMB_PC', 'MGW_MZN_EMAM1','MGW_GLN_GLSR', 'MGW_GRN_EMAM', 'MGW_KHS_PC', 'MGW_TEH_SC22','MGW_TAB_RHMI', 'MGW_TEH_ISC2', 'MGW_HAM_TAHER2', 'MGW_KHR_FRSH', 'MGW_KHR_FRSH2']
-    prefixes = ['76', '87', '35', '25', '45', '24', '23', '44', '34', '77', '81', '11', '21','71', '11', '31', '31', '26', '61','61', '38', '11','13', '17', '58','21', '41', '21','81', '51', '51']
-    operators = ['shatel', 'mci', 'mtn', 'rtl', 'TCI', 'TIC', 'Undefined']
-    period_data_generate(mgws, operators)
+#
+# if __name__ == '__main__':
+#     mgws = ['MGW_HMN_EALI', 'MGW_KOR_SAN', 'MGW_YZD_SADQ', 'MGW_QOM_QOM', 'MGW_ARB_PC', 'MGW_ZNJ_PC', 'MGW_SMN_AMLO', 'MGW_OUR_MDRS', 'MGW_KRM_VASR', 'MGW_BOU_BHMN', 'MGW_HAM_TAHER', 'MGW_MZN_EMAM2', 'MGW_TEH_SC21','MGW_FRS_VALI', 'MGW_ESF_EMAM1', 'MGW_ESF_EMAM2', 'MGW_ABZ_KRJ', 'MGW_KHZ_VALI2', 'MGW_KHZ_VALI1', 'MGW_CMB_PC', 'MGW_MZN_EMAM1','MGW_GLN_GLSR', 'MGW_GRN_EMAM', 'MGW_KHS_PC', 'MGW_TEH_SC22','MGW_TAB_RHMI', 'MGW_TEH_ISC2', 'MGW_HAM_TAHER2', 'MGW_KHR_FRSH', 'MGW_KHR_FRSH2']
+#     prefixes = ['76', '87', '35', '25', '45', '24', '23', '44', '34', '77', '81', '11', '21','71', '11', '31', '31', '26', '61','61', '38', '11','13', '17', '58','21', '41', '21','81', '51', '51']
+#     operators = ['shatel', 'mci', 'mtn', 'rtl', 'TCI', 'TIC', 'Undefined']
+#     period_data_generate(mgws, operators)
 
 
 

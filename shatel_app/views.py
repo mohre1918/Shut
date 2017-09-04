@@ -51,7 +51,7 @@ def Prefix_analysis(request):
     end_date=datetime.datetime.today().strftime('%Y-%m-%d')
     start_date=(datetime.datetime.today() + datetime.timedelta(-30)).strftime('%Y-%m-%d')
     if request.method == 'POST':
-        mgw = request.POST.getlist('province')
+        mgw = request.POST.getlist('MGW')
         source_prefix = re.split(',',request.POST.getlist('source_prefix')[0])
         destination_prefix = re.split(',', request.POST.getlist('destination_prefix')[0])
         start_date = request.POST.getlist('start_date')
@@ -129,10 +129,11 @@ def Dashboard(request):
 
     ###############  period_data Generate ###############
     period_data = period_result2Postgres.period_data_read()
-    mgw_operator = []
+    mgw_operator = [["ALL"]]
     for i in range(0,len(mgws)):
         for j in range(0,len(operators)):
             mgw_operator.append([mgws[i], operators[j]])
+    print mgw_operator
     period_data = eval(period_data)
     #########################################################3
 

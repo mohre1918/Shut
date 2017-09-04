@@ -34,6 +34,7 @@ def endSession():
 # dar yek mediagateway va darbeyne stime o e time tamas az prefixlist be destlist ra hesab mikonad
 # *******************************************
 def prefix_analyzeMP(mgw, stime, etime, prefixlist, prefixlist_DST, crinfo, sumdur):
+    cur = conn.cursor()
     query = "select stime,duration,crinfo from " + mgw + " where (ocgpn is not null and stime>'" + stime + "' and stime<'" + etime + "' and (" + str(prefixlist) + ") and (" + str(prefixlist_DST) + "))"
     cur.execute(query)
     while True:
@@ -68,6 +69,7 @@ def opname_analyzeMP(mgw, stime, etime, oplist_SRC, oplist_DST, crinfo, sumdur):
 # *******************************************
 
 def dailyanalyze(mgw, date, op1, op2, crinfo, sumdur):
+    cur = conn.cursor()
     query = "select stime,duration,crinfo from " + mgw + " where (ocgpn is not null and cast(stime as text) like '" + str(
         date) + "%' and caller='" + str(op1) + "' and called ='" + str(op2) + "')"
     cur.execute(query)
@@ -87,6 +89,7 @@ def dailyanalyze(mgw, date, op1, op2, crinfo, sumdur):
 # *******************************************
 
 def disAn(mgw, stime, etime, op1, op2, crinfo, sumdur):
+    cur = conn.cursor()
     query = "select stime,duration,crinfo from " + mgw + " where (ocgpn is not null and stime>'" + stime + "' and stime<'" + etime + "' and  caller='" + str(op1) + "' and called ='" + str(op2) + "')"
     cur.execute(query)
     while True:
