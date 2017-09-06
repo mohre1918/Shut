@@ -24,6 +24,8 @@ def COPY(folder_name, prefix):
         directory_folder_readfile = "/home/zare/django-zare/projects/shatel-CDR/NEWPROJECT/CDR-files/CDR-MGW/" + folder_name + "_readfiles" + "/"
         create_table_query = """CREATE TABLE IF NOT EXISTS """ + folder_name + """ (sign text,stime timestamp,ctime text,dtime text,duration real,icgpn text,icdpn text,ocgpn bigint,ocdpn bigint,pmark text,irnumber text,ornumber text,rmark text,iipaddress text,oipaddress text,itype text,otype text,release_cause text,rsmark text,crinfo text,idesc text,odesc text,ie1ch text,oe1ch text,ie1str text,oe1str text,iss7cat text,oss7cat text,iss7cic text,oss7cic text,icid text,ocid text,blank text,blank2 text, blank3 text)"""
         cur.execute(create_table_query)
+        create_table_query = """CREATE TABLE IF NOT EXISTS raw_data.""" + folder_name + """_raw (sign text,stime timestamp,ctime text,dtime text,duration real,icgpn text,icdpn text,ocgpn text,ocdpn text,pmark text,irnumber text,ornumber text,rmark text,iipaddress text,oipaddress text,itype text,otype text,release_cause text,rsmark text,crinfo text,idesc text,odesc text,ie1ch text,oe1ch text,ie1str text,oe1str text,iss7cat text,oss7cat text,iss7cic text,oss7cic text,icid text,ocid text,blank text,blank2 text, blank3 text, caller text, called text)"""
+        cur.execute(create_table_query)
         create_table_query = """CREATE TABLE IF NOT EXISTS """ + folder_name + """_tmp (sign text,stime timestamp,ctime text,dtime text,duration text,icgpn text,icdpn text,ocgpn text,ocdpn text,pmark text,irnumber text,ornumber text,rmark text,iipaddress text,oipaddress text,itype text,otype text,release_cause text,rsmark text,crinfo text,idesc text,odesc text,ie1ch text,oe1ch text,ie1str text,oe1str text,iss7cat text,oss7cat text,iss7cic text,oss7cic text,icid text,ocid text,blank text,blank2 text, blank3 text)"""
         # print(create_table_query)
         cur.execute(create_table_query)
@@ -60,8 +62,8 @@ def COPY(folder_name, prefix):
 
             # print int(file[0:14]), ",,," , max(file_list)
             if (int(file[0:14]) <= max(file_list) or int(file[0:14]) < 20170000000000):
-                print("bye")
-                # pass
+                # print("bye")
+                pass
             else:
                 print(file)
                 print("salam")
@@ -71,6 +73,18 @@ def COPY(folder_name, prefix):
                 query = """COPY """ + table_name + """ from """ + directory + """ with delimiter ';' NULL as ''"""
                 cur.execute(query)
                 copyfile(file, directory_folder_readfile + str(file))
+
+        query = " ALTER TABLE " + folder_name + "_tmp ALTER COLUMN duration TYPE real USING duration::real; "
+        cur.execute(query)
+        query = "insert into raw_data." + folder_name + "_raw select * from public." + folder_name + "_tmp"
+        cur.execute(query)
+        query = " ALTER TABLE " + folder_name + "_tmp ALTER COLUMN duration TYPE text USING duration::text; "
+        cur.execute(query)
+        query = "alter table raw_data." + folder_name + "_raw Drop column if exists id"
+        cur.execute(query)
+        query = "alter table raw_data." + folder_name + "_raw ADD COLUMN id BIGSERIAL PRIMARY KEY;"
+        cur.execute(query)
+
 
         query = " ALTER TABLE " + folder_name + "_tmp ALTER COLUMN ocgpn TYPE text USING ocgpn::text; "
         cur.execute(query)

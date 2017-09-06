@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # url(r'^gchart/', Gchart_view.gchart),
     url(r'', include('shatel_app.urls')),
+    url(r'raw_data/', include('shatel_raw_app.urls')),
     # url(r'^login/$', views.login, {'template_name': 'login.html'}),
     url(r'^login/$', auth_views.login, {'template_name': 'login.html', 'authentication_form': LoginForm}, name = "login"),
     url(r'^logout/$', auth_views.logout, {'next_page': '/login'}),

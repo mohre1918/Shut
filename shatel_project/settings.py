@@ -38,9 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shatel_app',
+    'shatel_raw_app',
+
 
 ]
-
+SITE_ID = 1
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,15 +80,20 @@ LOGIN_REDIRECT_URL = '/'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'aa': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     },
-    'Data': {
-        'NAME': 'app_data',
-        'ENGINE': 'django.db.backends.postgresql',
+    'default': {
+        'NAME': 'NEWCDR',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'USER': 'postgres',
-        'PASSWORD': 'salam1111'
+        'PASSWORD': 'salam1111',
+        'HOST': 'localhost',
+        'OPTIONS': {
+            'options': '-c search_path=raw_data,public'
+        },
+        'PORT' : ''
     },
 }
 

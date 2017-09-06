@@ -10,7 +10,8 @@ from __future__ import unicode_literals
 from django.db import models
 
 
-class MgwAbzKrj(models.Model):
+
+class MgwAbzKrjRaw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -18,8 +19,8 @@ class MgwAbzKrj(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -52,10 +53,10 @@ class MgwAbzKrj(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_abz_krj'
+        db_table = 'mgw_abz_krj_raw'
 
 
-class MgwArbPc(models.Model):
+class MgwArbPcRaw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -63,8 +64,8 @@ class MgwArbPc(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -97,10 +98,10 @@ class MgwArbPc(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_arb_pc'
+        db_table = 'mgw_arb_pc_raw'
 
 
-class MgwBouBhmn(models.Model):
+class MgwBouBhmnRaw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -108,8 +109,8 @@ class MgwBouBhmn(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -142,10 +143,10 @@ class MgwBouBhmn(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_bou_bhmn'
+        db_table = 'mgw_bou_bhmn_raw'
 
 
-class MgwCmbPc(models.Model):
+class MgwCmbPcRaw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -153,8 +154,8 @@ class MgwCmbPc(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -187,10 +188,10 @@ class MgwCmbPc(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_cmb_pc'
+        db_table = 'mgw_cmb_pc_raw'
 
 
-class MgwEsfEmam1(models.Model):
+class MgwEsfEmam1Raw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -198,8 +199,8 @@ class MgwEsfEmam1(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -232,10 +233,10 @@ class MgwEsfEmam1(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_esf_emam1'
+        db_table = 'mgw_esf_emam1_raw'
 
 
-class MgwEsfEmam2(models.Model):
+class MgwEsfEmam2Raw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -243,8 +244,8 @@ class MgwEsfEmam2(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -277,10 +278,10 @@ class MgwEsfEmam2(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_esf_emam2'
+        db_table = 'mgw_esf_emam2_raw'
 
 
-class MgwFrsVali(models.Model):
+class MgwFrsValiRaw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -288,8 +289,8 @@ class MgwFrsVali(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -322,10 +323,10 @@ class MgwFrsVali(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_frs_vali'
+        db_table = 'mgw_frs_vali_raw'
 
 
-class MgwGlnGlsr(models.Model):
+class MgwGlnGlsrRaw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -333,8 +334,8 @@ class MgwGlnGlsr(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -367,10 +368,10 @@ class MgwGlnGlsr(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_gln_glsr'
+        db_table = 'mgw_gln_glsr_raw'
 
 
-class MgwGrnEmam(models.Model):
+class MgwGrnEmamRaw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -378,8 +379,8 @@ class MgwGrnEmam(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -412,10 +413,10 @@ class MgwGrnEmam(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_grn_emam'
+        db_table = 'mgw_grn_emam_raw'
 
 
-class MgwHamTaher(models.Model):
+class MgwHamTaher2Raw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -423,8 +424,8 @@ class MgwHamTaher(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -457,10 +458,10 @@ class MgwHamTaher(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_ham_taher'
+        db_table = 'mgw_ham_taher2_raw'
 
 
-class MgwHamTaher2(models.Model):
+class MgwHamTaherRaw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -468,8 +469,8 @@ class MgwHamTaher2(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -502,10 +503,10 @@ class MgwHamTaher2(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_ham_taher2'
+        db_table = 'mgw_ham_taher_raw'
 
 
-class MgwHmnEali(models.Model):
+class MgwHmnEaliRaw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -513,8 +514,8 @@ class MgwHmnEali(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -547,10 +548,10 @@ class MgwHmnEali(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_hmn_eali'
+        db_table = 'mgw_hmn_eali_raw'
 
 
-class MgwKhrFrsh(models.Model):
+class MgwKhrFrsh2Raw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -558,8 +559,8 @@ class MgwKhrFrsh(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -592,10 +593,10 @@ class MgwKhrFrsh(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_khr_frsh'
+        db_table = 'mgw_khr_frsh2_raw'
 
 
-class MgwKhrFrsh2(models.Model):
+class MgwKhrFrshRaw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -603,8 +604,8 @@ class MgwKhrFrsh2(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -637,10 +638,10 @@ class MgwKhrFrsh2(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_khr_frsh2'
+        db_table = 'mgw_khr_frsh_raw'
 
 
-class MgwKhsPc(models.Model):
+class MgwKhsPcRaw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -648,8 +649,8 @@ class MgwKhsPc(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -682,10 +683,10 @@ class MgwKhsPc(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_khs_pc'
+        db_table = 'mgw_khs_pc_raw'
 
 
-class MgwKhzVali1(models.Model):
+class MgwKhzVali1Raw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -693,8 +694,8 @@ class MgwKhzVali1(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -727,10 +728,10 @@ class MgwKhzVali1(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_khz_vali1'
+        db_table = 'mgw_khz_vali1_raw'
 
 
-class MgwKhzVali2(models.Model):
+class MgwKhzVali2Raw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -738,8 +739,8 @@ class MgwKhzVali2(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -772,10 +773,10 @@ class MgwKhzVali2(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_khz_vali2'
+        db_table = 'mgw_khz_vali2_raw'
 
 
-class MgwKorSan(models.Model):
+class MgwKorSanRaw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -783,8 +784,8 @@ class MgwKorSan(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -817,10 +818,10 @@ class MgwKorSan(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_kor_san'
+        db_table = 'mgw_kor_san_raw'
 
 
-class MgwKrmVasr(models.Model):
+class MgwKrmVasrRaw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -828,8 +829,8 @@ class MgwKrmVasr(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -862,10 +863,10 @@ class MgwKrmVasr(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_krm_vasr'
+        db_table = 'mgw_krm_vasr_raw'
 
 
-class MgwMznEmam1(models.Model):
+class MgwMznEmam1Raw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -873,8 +874,8 @@ class MgwMznEmam1(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -907,10 +908,10 @@ class MgwMznEmam1(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_mzn_emam1'
+        db_table = 'mgw_mzn_emam1_raw'
 
 
-class MgwMznEmam2(models.Model):
+class MgwMznEmam2Raw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -918,8 +919,8 @@ class MgwMznEmam2(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -952,10 +953,10 @@ class MgwMznEmam2(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_mzn_emam2'
+        db_table = 'mgw_mzn_emam2_raw'
 
 
-class MgwOurMdrs(models.Model):
+class MgwOurMdrsRaw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -963,8 +964,8 @@ class MgwOurMdrs(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -997,10 +998,10 @@ class MgwOurMdrs(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_our_mdrs'
+        db_table = 'mgw_our_mdrs_raw'
 
 
-class MgwQomQom(models.Model):
+class MgwQomQomRaw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -1008,8 +1009,8 @@ class MgwQomQom(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -1042,10 +1043,10 @@ class MgwQomQom(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_qom_qom'
+        db_table = 'mgw_qom_qom_raw'
 
 
-class MgwSmnAmlo(models.Model):
+class MgwSmnAmloRaw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -1053,8 +1054,8 @@ class MgwSmnAmlo(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -1087,10 +1088,10 @@ class MgwSmnAmlo(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_smn_amlo'
+        db_table = 'mgw_smn_amlo_raw'
 
 
-class MgwTabRhmi(models.Model):
+class MgwTabRhmiRaw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -1098,8 +1099,8 @@ class MgwTabRhmi(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -1132,10 +1133,10 @@ class MgwTabRhmi(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_tab_rhmi'
+        db_table = 'mgw_tab_rhmi_raw'
 
 
-class MgwTehIsc2(models.Model):
+class MgwTehIsc2Raw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -1143,8 +1144,8 @@ class MgwTehIsc2(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -1177,10 +1178,10 @@ class MgwTehIsc2(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_teh_isc2'
+        db_table = 'mgw_teh_isc2_raw'
 
 
-class MgwTehSc21(models.Model):
+class MgwTehSc22Raw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -1188,8 +1189,8 @@ class MgwTehSc21(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -1222,10 +1223,10 @@ class MgwTehSc21(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_teh_sc21'
+        db_table = 'mgw_teh_sc22_raw'
 
 
-class MgwTehSc22(models.Model):
+class MgwYzdSadqRaw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -1233,8 +1234,8 @@ class MgwTehSc22(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -1267,10 +1268,10 @@ class MgwTehSc22(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_teh_sc22'
+        db_table = 'mgw_yzd_sadq_raw'
 
 
-class MgwYzdSadq(models.Model):
+class MgwZnjPcRaw(models.Model):
     sign = models.TextField(blank=True, null=True)
     stime = models.DateTimeField(blank=True, null=True)
     ctime = models.TextField(blank=True, null=True)
@@ -1278,8 +1279,8 @@ class MgwYzdSadq(models.Model):
     duration = models.FloatField(blank=True, null=True)
     icgpn = models.TextField(blank=True, null=True)
     icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
+    ocgpn = models.TextField(blank=True, null=True)
+    ocdpn = models.TextField(blank=True, null=True)
     pmark = models.TextField(blank=True, null=True)
     irnumber = models.TextField(blank=True, null=True)
     ornumber = models.TextField(blank=True, null=True)
@@ -1312,49 +1313,4 @@ class MgwYzdSadq(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mgw_yzd_sadq'
-
-
-class MgwZnjPc(models.Model):
-    sign = models.TextField(blank=True, null=True)
-    stime = models.DateTimeField(blank=True, null=True)
-    ctime = models.TextField(blank=True, null=True)
-    dtime = models.TextField(blank=True, null=True)
-    duration = models.FloatField(blank=True, null=True)
-    icgpn = models.TextField(blank=True, null=True)
-    icdpn = models.TextField(blank=True, null=True)
-    ocgpn = models.BigIntegerField(blank=True, null=True)
-    ocdpn = models.BigIntegerField(blank=True, null=True)
-    pmark = models.TextField(blank=True, null=True)
-    irnumber = models.TextField(blank=True, null=True)
-    ornumber = models.TextField(blank=True, null=True)
-    rmark = models.TextField(blank=True, null=True)
-    iipaddress = models.TextField(blank=True, null=True)
-    oipaddress = models.TextField(blank=True, null=True)
-    itype = models.TextField(blank=True, null=True)
-    otype = models.TextField(blank=True, null=True)
-    release_cause = models.TextField(blank=True, null=True)
-    rsmark = models.TextField(blank=True, null=True)
-    crinfo = models.TextField(blank=True, null=True)
-    idesc = models.TextField(blank=True, null=True)
-    odesc = models.TextField(blank=True, null=True)
-    ie1ch = models.TextField(blank=True, null=True)
-    oe1ch = models.TextField(blank=True, null=True)
-    ie1str = models.TextField(blank=True, null=True)
-    oe1str = models.TextField(blank=True, null=True)
-    iss7cat = models.TextField(blank=True, null=True)
-    oss7cat = models.TextField(blank=True, null=True)
-    iss7cic = models.TextField(blank=True, null=True)
-    oss7cic = models.TextField(blank=True, null=True)
-    icid = models.TextField(blank=True, null=True)
-    ocid = models.TextField(blank=True, null=True)
-    blank = models.TextField(blank=True, null=True)
-    blank2 = models.TextField(blank=True, null=True)
-    blank3 = models.TextField(blank=True, null=True)
-    caller = models.TextField(blank=True, null=True)
-    called = models.TextField(blank=True, null=True)
-    id = models.BigAutoField(primary_key=True)
-
-    class Meta:
-        managed = False
-        db_table = 'mgw_znj_pc'
+        db_table = 'mgw_znj_pc_raw'

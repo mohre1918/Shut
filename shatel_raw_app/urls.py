@@ -21,12 +21,5 @@ import views
 
 
 urlpatterns = [
-    url(r'^dashboard/$', views.Dashboard),
-    url(r'^OperatorAnalysis/$', views.Operator_analysis),
-    url(r'^PrefixAnalysis/$', views.Prefix_analysis),
-    url(r'^Myquery/$', views.Myquery),
-    url(r'^dailyshatel/$', views.dailyshatel),
-    url(r'^Periodshatel/$', views.Periodshatel),
-    url(r'^dynamic/$', views.dynamic),
-    url(r'^$', RedirectView.as_view(url='/dashboard')),
+    url(r'^fraud/$', views.fraud),
 ]

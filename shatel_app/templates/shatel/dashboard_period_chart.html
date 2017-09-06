@@ -7,7 +7,7 @@
 			    "marginRight": 80,
 			    "autoMarginOffset": 20,
 			    "marginTop": 7,
-			    "dataProvider": chartData[183],
+			    "dataProvider": chartData[184],
 			    "fontSize":13,
 			    "valueAxes": [{
 			        "axisAlpha": 0.2,
@@ -164,7 +164,7 @@
 						{
 							"id": "Title-1",
 							"size": 15,
-							"text": "ALL to ALL Duration"
+							"text": "ALL MGWs and ALL Operator Duration"
 						}
 					],
 			    "legend": {
@@ -202,6 +202,6 @@
 			// this method is called when chart is first inited as we listen for "rendered" event
 			function zoomChart() {
 			    // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
-			    chart_period.zoomToIndexes(chartData[0].length-100, chartData[0].length-1);
+			    chart_period.zoomToIndexes(chartData[1].length-100, chartData[1].length-1);
 			}
 		</script>
