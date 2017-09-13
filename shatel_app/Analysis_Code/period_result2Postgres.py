@@ -4,10 +4,9 @@ import mycode
 import psycopg2
 from config import config
 
+
+
 def period_data_generate(mgws, operators):
-    # mgws = ['MGW_HMN_EALI', 'MGW_KOR_SAN', 'MGW_YZD_SADQ', 'MGW_QOM_QOM', 'MGW_ARB_PC', 'MGW_ZNJ_PC', 'MGW_SMN_AMLO', 'MGW_OUR_MDRS', 'MGW_KRM_VASR', 'MGW_BOU_BHMN', 'MGW_HAM_TAHER', 'MGW_MZN_EMAM2', 'MGW_TEH_SC21','MGW_FRS_VALI', 'MGW_MZN_EMAM', 'MGW_ESF_EMAM1', 'MGW_ESF_EMAM2', 'MGW_ABZ_KRJ', 'MGW_KHZ_VALI2', 'MGW_KHZ_VALI1', 'MGW_CMB_PC', 'MGW_MZN_EMAM1','MGW_GLN_GLSR', 'MGW_GRN_EMAM', 'MGW_KHS_PC', 'MGW_TEH_SC22','MGW_TAB_RHMI', 'MGW_TEH_ISC2', 'MGW_HAM_TAHER2', 'MGW_KHR_FRSH']
-    # mgws = ['MGW_HMN_EALI', 'MGW_KOR_SAN', 'MGW_YZD_SADQ', 'MGW_QOM_QOM', 'MGW_ZNJ_PC', 'MGW_SMN_AMLO', 'MGW_OUR_MDRS', 'MGW_KRM_VASR', 'MGW_BOU_BHMN', 'MGW_HAM_TAHER', 'MGW_FRS_VALI', 'MGW_MZN_EMAM', 'MGW_ESF_EMAM1', 'MGW_ESF_EMAM2', 'MGW_ABZ_KRJ', 'MGW_KHZ_VALI1', 'MGW_CMB_PC', 'MGW_GLN_GLSR', 'MGW_GRN_EMAM', 'MGW_TAB_RHMI', 'MGW_TEH_ISC2', 'MGW_KHR_FRSH']
-    # operators = ['shatel', 'mci', 'mtn', 'rtl', 'TCI', 'TIC', 'Undefined']
     period_data = []
     data = mycode.showDistDur(mgws,(datetime.datetime.today() + datetime.timedelta(-365)).strftime('%Y-%m-%d'),datetime.datetime.now().strftime("%Y-%m-%d"),operators)
     period_data.append(data)
@@ -27,6 +26,34 @@ def period_data_generate(mgws, operators):
         conn = psycopg2.connect(**params)
         cur = conn.cursor()
         cur.execute(query)
+        cur.close()
+        conn.commit()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+            print('Database connection closed.')
+def period_data_generate_SSW(mgws, operators):
+    period_data = []
+    data = mycode.showDistDur(mgws,(datetime.datetime.today() + datetime.timedelta(-365)).strftime('%Y-%m-%d'),datetime.datetime.now().strftime("%Y-%m-%d"),operators)
+    period_data.append(data)
+    for mgw in mgws:
+        for operator in operators:
+            data = mycode.showDistDur([mgw],(datetime.datetime.today() + datetime.timedelta(-365)).strftime('%Y-%m-%d'),datetime.datetime.now().strftime("%Y-%m-%d"),[operator])
+            period_data.append(data)
+            print mgw , '\n', operator
+    value = str(period_data)
+    value = value.replace("'", "''")
+    value = value.replace("None", "0")
+    # print value
+    query = "insert into dashboard.period_result_SSW(result, time) VALUES ('"+value+"', '"+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")+"');"
+    conn = None
+    try:
+        params = config()
+        conn = psycopg2.connect(**params)
+        cur = conn.cursor()
+        cur.execute(query)
         print query
         cur.close()
         conn.commit()
@@ -36,7 +63,6 @@ def period_data_generate(mgws, operators):
         if conn is not None:
             conn.close()
             print('Database connection closed.')
-
 
 def period_data_read():
     query = " select result from dashboard.period_result order by time DESC limit 1"
@@ -58,6 +84,25 @@ def period_data_read():
             conn.close()
             print('Database connection closed.')
 
+def period_data_read_SSW():
+    query = " select result from dashboard.period_result_SSW order by time DESC limit 1"
+    conn = None
+    try:
+        params = config()
+        conn = psycopg2.connect(**params)
+        cur = conn.cursor()
+        cur.execute(query)
+        row = cur.fetchone()
+        # print row[0]
+        cur.close()
+        conn.commit()
+        return row[0]
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+            print('Database connection closed.')
 
 
 

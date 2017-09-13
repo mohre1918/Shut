@@ -23,8 +23,12 @@
 		<link rel="stylesheet" href="{% static 'amcharts/amcharts/plugins/export/export.css' %}" type="text/css" media="all" />
 
 
-		{% include "shatel/Prefix_and_Operator_Duration.html" with type="prefix" %}
 
+		{% if 'AVA_BCF_CDR' in user_selected_mgw %}
+			{% include "shatel/Prefix_and_Operator_Duration_SSW.html" with type="prefix" %}
+		{% else %}
+			{% include "shatel/Prefix_and_Operator_Duration.html" with type="prefix" %}
+		{% endif %}
 {% endblock %}
 
 

@@ -1,5 +1,7 @@
 #!/usr/bin/python
+from __future__ import division
 import psycopg2
+
 from config import config
 import numpy as np
 from operators import *
@@ -52,6 +54,7 @@ def prefix_analyzeMP(mgw, stime, etime, prefixlist, prefixlist_DST, crinfo, sumd
 def opname_analyzeMP(mgw, stime, etime, oplist_SRC, oplist_DST, crinfo, sumdur):
     cur = conn.cursor()
     query = "select stime,duration,crinfo from " + mgw + " where (ocgpn is not null and stime>'" + stime + "' and stime<'" + etime + "' and " + str(oplist_SRC) + " and " + str(oplist_DST) + ")"
+
     cur.execute(query)
     while True:
         row = cur.fetchone()
@@ -410,6 +413,48 @@ def prefixanalysis(mgw, stime, etime, prefix_SRC, prefix_DST):
         counter += 1
     return [dictionary_duration, dictionary_crinfo, dictionary_ner]
 
+def prefixanalysis_SSW(mgw, stime, etime, prefix_SRC, prefix_DST):
+    dictionary_duration = []
+    dictionary_crinfo = []
+    dictionary_ner = []
+    prefixlist = ''
+    for prefix in prefix_SRC:
+        prefixlist += ' cast(ocgpn as text) like \''
+        prefixlist += prefix
+        prefixlist += ('%\' or ')
+    prefixlist += ' False '
+    prefixlist_DST = ''
+    for prefix in prefix_DST:
+        prefixlist_DST += ' cast(ocdpn as text) like \''
+        prefixlist_DST += prefix
+        prefixlist_DST += ('%\' or ')
+    prefixlist_DST += ' False '
+    counter = 0
+    query = "select crinfo, count(crinfo) from ava_bcf_cdr where (ocgpn is not null and stime>'" + stime + "' and stime<'" + etime + "' and (" + str(prefixlist) + ") and (" + str(prefixlist_DST) + "))  group by crinfo"
+    cur.execute(query)
+    cr = cur.fetchall()
+    for mgw in mgw:
+        dictionary_duration.append({})
+        dictionary_crinfo.append({})
+        dictionary_ner.append({})
+        dictionary_duration[counter]['MGW'] = mgw
+        dictionary_crinfo[counter]['MGW'] = mgw
+        dictionary_ner[counter]['MGW'] = mgw
+
+        crinfo = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        sumdur = 0
+        result = prefix_analyzeMP(mgw, stime, etime, prefixlist, prefixlist_DST, crinfo, sumdur)
+        dictionary_duration[counter]['Duration'] = round(result[1]/60,2)
+        for i in range(0, len(cr)):
+            dictionary_crinfo[counter][str(cr[i][0])] = cr[i][1]
+        s = 0
+        for i in range(0, len(cr)):
+            s += cr[i][1]
+        for i in range(0, len(cr)):
+            if(str(cr[i][0]) == 'Answered'):
+                dictionary_ner[counter]['NER'] =cr[i][1]/s
+        counter += 1
+    return [dictionary_duration, dictionary_crinfo, dictionary_ner]
 
 ###################################################
 ###in ingoing va outgoing shatel dar baze zamani delkhah ro be surat dictionary neshun mide.
@@ -483,6 +528,52 @@ def operatordanalysis(mgw, stime, etime, name_SRC, name_DST):
         counter += 1
     return [dictionary_duration, dictionary_crinfo, dictionary_ner]
 
+
+def operatordanalysis_SSW(mgw, stime, etime, name_SRC, name_DST):
+    dictionary_duration = []
+    dictionary_crinfo = []
+    dictionary_ner = []
+    crinfo = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    sumdur = 0
+    result = []
+    namelist_src = '( False'
+    for name in name_SRC:
+        namelist_src += ' or caller = \''
+        namelist_src += name
+        namelist_src += ('\'')
+    namelist_src += ')'
+    namelist_dst = '( False'
+    for name in name_DST:
+        namelist_dst += ' or called = \''
+        namelist_dst += name
+        namelist_dst += ('\'')
+    namelist_dst += ')'
+    counter = 0
+    query = "select crinfo, count(crinfo) from ava_bcf_cdr where (ocgpn is not null and stime>'" + stime + "' and stime<'" + etime + "' and " + str(namelist_src) + " and " + str(namelist_dst) + ") group by crinfo"
+    cur.execute(query)
+    cr = cur.fetchall()
+    for mgw in mgw:
+        dictionary_duration.append({})
+        dictionary_crinfo.append({})
+        dictionary_ner.append({})
+        dictionary_duration[counter]['MGW'] = mgw
+        dictionary_crinfo[counter]['MGW'] = mgw
+        dictionary_ner[counter]['MGW'] = mgw
+
+        crinfo = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        sumdur = 0
+        result = opname_analyzeMP(mgw, stime, etime, namelist_src, namelist_dst, crinfo, sumdur)
+        dictionary_duration[counter]['Duration'] = round(result[1]/60,2)
+        for i in range(0, len(cr)):
+            dictionary_crinfo[counter][str(cr[i][0])] = cr[i][1]
+        s = 0
+        for i in range(0, len(cr)):
+            s += cr[i][1]
+        for i in range(0, len(cr)):
+            if(str(cr[i][0]) == 'Answered'):
+                dictionary_ner[counter]['NER'] =cr[i][1]/s
+        counter += 1
+    return [dictionary_duration, dictionary_crinfo, dictionary_ner]
 
 #########################################################
 ###my query is here man !!!!

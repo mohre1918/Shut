@@ -20,8 +20,12 @@
 
 		<!--Incoming/Outgoing Duration from Shatel-->
 
-		{% include "shatel/Prefix_and_Operator_Duration.html" with type="prefix" %}
 
+		{% if 'AVA_BCF_CDR' in user_selected_mgw %}
+			{% include "shatel/Prefix_and_Operator_Duration_SSW.html" with type="prefix" %}
+		{% else %}
+			{% include "shatel/Prefix_and_Operator_Duration.html" with type="prefix" %}
+		{% endif %}
 
 
 {% endblock %}

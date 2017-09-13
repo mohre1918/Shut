@@ -12,8 +12,8 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
 # from shatel_app.comma_seperate import comma_seperate
-mgws = ['MGW_ARA_PC','MGW_HMN_EALI', 'MGW_KOR_SAN', 'MGW_YZD_SADQ', 'MGW_QOM_QOM', 'MGW_ARB_PC', 'MGW_ZNJ_PC', 'MGW_SMN_AMLO', 'MGW_OUR_MDRS', 'MGW_KRM_VASR', 'MGW_BOU_BHMN', 'MGW_HAM_TAHER', 'MGW_MZN_EMAM2', 'MGW_TEH_SC21','MGW_FRS_VALI', 'MGW_ESF_EMAM1', 'MGW_ESF_EMAM2', 'MGW_ABZ_KRJ', 'MGW_KHZ_VALI2', 'MGW_KHZ_VALI1', 'MGW_CMB_PC', 'MGW_MZN_EMAM1','MGW_GLN_GLSR', 'MGW_GRN_EMAM', 'MGW_KHS_PC', 'MGW_TEH_SC22','MGW_TAB_RHMI', 'MGW_TEH_ISC2', 'MGW_HAM_TAHER2', 'MGW_KHR_FRSH', 'MGW_KHR_FRSH2']
-prefixes = ['86', '76', '87', '35', '25', '45', '24', '23', '44', '34', '77', '81', '11', '21','71', '11', '31', '31', '26', '61','61', '38', '11','13', '17', '58','21', '41', '21','81', '51', '51']
+mgws = ['AVA_BCF_CDR','MGW_ARA_PC','MGW_HMN_EALI', 'MGW_KOR_SAN', 'MGW_YZD_SADQ', 'MGW_QOM_QOM', 'MGW_ARB_PC', 'MGW_ZNJ_PC', 'MGW_SMN_AMLO', 'MGW_OUR_MDRS', 'MGW_KRM_VASR', 'MGW_BOU_BHMN', 'MGW_HAM_TAHER', 'MGW_MZN_EMAM2', 'MGW_TEH_SC21','MGW_FRS_VALI', 'MGW_ESF_EMAM1', 'MGW_ESF_EMAM2', 'MGW_ABZ_KRJ', 'MGW_KHZ_VALI2', 'MGW_KHZ_VALI1', 'MGW_CMB_PC', 'MGW_MZN_EMAM1','MGW_GLN_GLSR', 'MGW_GRN_EMAM', 'MGW_KHS_PC', 'MGW_TEH_SC22','MGW_TAB_RHMI', 'MGW_TEH_ISC2', 'MGW_HAM_TAHER2', 'MGW_KHR_FRSH', 'MGW_KHR_FRSH2']
+prefixes = ["00",'86', '76', '87', '35', '25', '45', '24', '23', '44', '34', '77', '81', '11', '21','71', '11', '31', '31', '26', '61','61', '38', '11','13', '17', '58','21', '41', '21','81', '51', '51']
 operators = ['shatel', 'mci', 'mtn', 'rtl', 'TCI', 'TIC', 'Undefined']
 dates=["oneDay", "oneWeek", "oneMonth","threeMonth","sixMonth", "oneYear"]
 deltas = [-1 , -7, -30,-90,-180,-365]
@@ -38,7 +38,11 @@ def Operator_analysis(request):
         destination_operator = request.POST.getlist('destination_operator')
         start_date = request.POST.getlist('start_date')
         end_date = request.POST.getlist('end_date')
-        data = mycode.operatordanalysis(mgw, start_date[0], end_date[0], source_operator,destination_operator)
+        print mgw[0]
+        if mgw[0] == 'AVA_BCF_CDR':
+            data = mycode.operatordanalysis_SSW(mgw, start_date[0], end_date[0], source_operator,destination_operator)
+        else:
+            data = mycode.operatordanalysis(mgw, start_date[0], end_date[0], source_operator,destination_operator)
         return render(request,'Operator_analysis.html', {'user_selected_mgw':mgw,'end_date':end_date,'start_date':start_date, 'source_operator':source_operator,'destination_operator':destination_operator,'duration' : json.dumps(data[0]), 'crinfo' : json.dumps(data[1]) , 'NER' : json.dumps(data[2]), 'now' : datetime.datetime.today().strftime('%Y-%m-%d'), 'now_30' : (datetime.datetime.today() + datetime.timedelta(-30)).strftime('%Y-%m-%d'), "mgws":mgws, "operators":operators})
     return render(request, 'Operator_analysis_form.html', {'user_selected_mgw':mgw,'end_date':end_date,'start_date':start_date, 'source_operator':source_operator,'destination_operator':destination_operator,"mgws":mgws, "operators":operators})
 
@@ -56,7 +60,11 @@ def Prefix_analysis(request):
         destination_prefix = re.split(',', request.POST.getlist('destination_prefix')[0])
         start_date = request.POST.getlist('start_date')
         end_date = request.POST.getlist('end_date')
-        data = mycode.prefixanalysis(mgw, start_date[0], end_date[0], source_prefix, destination_prefix)
+        if mgw[0] == 'ava_bcf_cdr':
+            data = mycode.prefixanalysis_SSW(mgw, start_date[0], end_date[0], source_prefix, destination_prefix)
+        else:
+            data = mycode.prefixanalysis(mgw, start_date[0], end_date[0], source_prefix, destination_prefix)
+
         return render(request , 'Prefix_analysis.html', {'user_selected_mgw':mgw,'end_date':end_date,'start_date':start_date, 'source_prefix':source_prefix,'destination_prefix':destination_prefix,'duration' : json.dumps(data[0]), 'crinfo' : json.dumps(data[1]) , 'NER' : json.dumps(data[2]) , 'now' : datetime.datetime.today().strftime('%Y-%m-%d'), 'now_30' : (datetime.datetime.today() + datetime.timedelta(-30)).strftime('%Y-%m-%d'), "mgws":mgws, "operators":operators})
     return render(request, 'Prefix_analysis_form.html', {'user_selected_mgw':mgw,'end_date':end_date,'start_date':start_date, 'source_prefix':source_prefix,'destination_prefix':destination_prefix,"mgws":mgws, "operators":operators})
 
@@ -117,10 +125,6 @@ def Dashboard(request):
     from Analysis_Code import period_result2Postgres
     from Analysis_Code import duration_per_operator_result2Postgres
     from Analysis_Code import duration_per_province_result2Postgres
-
-
-
-
 
 
 

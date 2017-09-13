@@ -76,6 +76,10 @@ def COPY(folder_name, prefix):
 
         query = " ALTER TABLE " + folder_name + "_tmp ALTER COLUMN duration TYPE real USING duration::real; "
         cur.execute(query)
+        query = " ALTER TABLE " + folder_name + "_tmp ALTER COLUMN ocgpn TYPE text USING ocgpn::bigint; "
+        cur.execute(query)
+        query = " ALTER TABLE " + folder_name + "_tmp ALTER COLUMN ocdpn TYPE text USING ocdpn::bigint; "
+        cur.execute(query)
         query = "insert into raw_data." + folder_name + "_raw select * from public." + folder_name + "_tmp"
         cur.execute(query)
         query = " ALTER TABLE " + folder_name + "_tmp ALTER COLUMN duration TYPE text USING duration::text; "

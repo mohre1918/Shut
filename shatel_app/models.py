@@ -9,6 +9,36 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+class AvaBcfCdr(models.Model):
+    stime = models.DateTimeField(blank=True, null=True)
+    ocgpn = models.DecimalField(max_digits=65535, decimal_places=0, blank=True, null=True)
+    ocdpn = models.DecimalField(max_digits=65535, decimal_places=0, blank=True, null=True)
+    s_trunk = models.TextField(blank=True, null=True)
+    d_trunk = models.TextField(blank=True, null=True)
+    duration = models.FloatField(blank=True, null=True)
+    call = models.TextField(blank=True, null=True)
+    crinfo = models.TextField(blank=True, null=True)
+    action = models.TextField(blank=True, null=True)
+    action_v = models.TextField(blank=True, null=True)
+    direction = models.TextField(blank=True, null=True)
+    s_ip = models.TextField(blank=True, null=True)
+    d_ip = models.TextField(blank=True, null=True)
+    s_name = models.TextField(blank=True, null=True)
+    d_name = models.TextField(blank=True, null=True)
+    sss = models.TextField(blank=True, null=True)
+    blank = models.TextField(blank=True, null=True)
+    blank2 = models.TextField(blank=True, null=True)
+    a = models.TextField(blank=True, null=True)
+    b = models.TextField(blank=True, null=True)
+    c = models.TextField(blank=True, null=True)
+    caller = models.TextField(blank=True, null=True)
+    called = models.TextField(blank=True, null=True)
+    id = models.BigAutoField(primary_key=True)
+
+    class Meta:
+        managed = False
+        db_table = 'ava_bcf_cdr'
+
 
 class MgwAbzKrj(models.Model):
     sign = models.TextField(blank=True, null=True)
